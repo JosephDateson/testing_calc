@@ -291,8 +291,8 @@ It is possible to set constraints on feasible strategies using functions. (see f
 					<div class="panel-heading">
 							<ul class="nav nav-tabs">
 								
-								<li class="active"><a href="#tab1default" data-toggle="tab">A short explanation</a></li>
-								<li><a href="#tab2default" data-toggle="tab">Useful functions</a></li>
+								<li class="active"><a href="#tab1default" data-toggle="tab">How to?</a></li>
+								<li><a href="#tab2default" data-toggle="tab">Proprietary functions</a></li>
 								<li><a href="#tab3default" data-toggle="tab">Save the game</a></li>
 								<li><a href="#tab4default" data-toggle="tab">Load the game</a></li>
 								
@@ -305,13 +305,15 @@ It is possible to set constraints on feasible strategies using functions. (see f
 							The game is defined by the strategies, payoff functions and dimensions you choose. Clicking Calculate! will find any local and global multi-dimensional equilibria for those settings. 
 							The calculator supports basic excel functions. Additional app-specific functions are defined in the functions tab.
 							Notice that you can easily input examples from the paper – Settlements, Blotto, Tennis – in the example tab.
+							<br><br>
+							Click the question mark signs <span class="glyphicon glyphicon-question-sign"></span> in the calculator in order to read explanations about each section.
 								<div class="btn-group" >
 										<br>
-										Press the example you wish to calculate. Its settings will be automatically defined in the calculator. Clicking Calculate! will find any local and global multi-dimensional equilibria for the example.
+										Press the example you wish to calculate. Its settings will be automatically defined in the calculator. Clicking the <font color="red"><b>"Calculate!"</b></font> button below will find any local and global multi-dimensional equilibria for the example.
 									  <br>
 									  <br>
 									  <button type="button" class="btn btn-info" onClick="load_example('Settlements')">Settlements</button>
-									  <button type="button" class="btn btn-info" onClick="load_example('Blotto_center')">Blotto with center</button>
+									  <button type="button" class="btn btn-info" onClick="load_example('Blotto_center')">Blotto - center</button>
 									  <button type="button" class="btn btn-info" onClick="load_example('Tennis')">Tennis</button>
 								</div>
 								<div class="btn-group" >
@@ -319,13 +321,104 @@ It is possible to set constraints on feasible strategies using functions. (see f
 								These are additional examples that do not appear in the paper:
 								<br>
 								<br>
-									  <button type="button" class="btn btn-info" onClick="load_example('Blotto_loc')">Blotto with location</button>
+									  <button type="button" class="btn btn-info" onClick="load_example('Blotto_loc')">Blotto - location</button>
 								</div>
 							</div>
 							<div class="tab-pane fade" id="tab2default">
-								functions
+								<table>
+									<tr>
+										<td>
+											exists(i,j,si=rj)
+										</td>
+										<td>
+											A boolean function that returns True only if there exist indices i and j for which the condition (here: si=rj) is satisfied.
+										</td>
+									</tr>
+									<tr>
+										<td>
+											foreach(i,si<=s1)
+										</td>
+										<td>
+											A boolean function that returns True only if for each index i, the condition (here: si<=s1) is satisfied.
+										</td>
+									</tr>
+									
+									<tr>
+										<td>
+											SUM(s)=0
+										</td>
+										<td>
+											A boolean function that returns True only if a strategy's entries sum equals to the chosen number (here: 0).
+										</td>
+									</tr>
+									<tr>
+										<td>
+											LEN(s)=2
+										</td>
+										<td>
+											A boolean function that returns True only if the strategy's length is 2.
+										</td>
+									</tr>
+									<tr>
+										<td>
+											else
+										</td>
+										<td>
+											Can be used in the Dimensions section, and chooses the relevant name only if all other conditions are not satisfied.
+										</td>
+									</tr>
+									
+									<tr>
+										<td>
+											percell(i,si=ri)
+										</td>
+										<td>
+											Can be used in the Payoff function section, and it sums the payment specified for each equal entry in both players' strategies.
+										</td>
+									</tr>
+									<tr>
+										<td>
+											countcells(0)=2
+										</td>
+										<td>
+											Can be used in the Payoff function section. A boolean function that returns True only if the number of entries equal to the requested number (here: 0) is equal to the chosen number (here: 2).	
+										</td>
+									</tr>
+									
+									<tr>
+										<td>
+											decreasing()
+										</td>
+										<td>
+											Can be used in the Payoff function section. A boolean function that returns True only if the strategy is in weak decreasing order (si>=si+1).
+										</td>
+									</tr>
+									<tr>
+										<td>
+											increasing()
+										</td>
+										<td>
+											Can be used in the Payoff function section. A boolean function that returns True only if the strategy is in weak increasing order (si<=si+1).
+										</td>
+									</tr>
+									
+									
+									
+									<tr>
+										<td>
+											percellcost(i,-si*0.33)
+										</td>
+										<td>
+											Can be used in the Payoff function section. A value function that adds a cost per entry (here: substracting 0.33*si from each player for each entry in a strategy). 
+										</td>
+									</tr>
+
+								</table>
 							</div>
 							<div class="tab-pane fade" id="tab3default">
+								You can save the current data you have filled in the calculator following the instructions:<br>
+								Type in a name of your choice for the data file. Not Typing in the name will choose a default name.<br><br>
+								Click "Save The Filled Cells Now" to save the data you have filled in the calculator, in our proprietary format.<br><br>
 								<div class="btn-group-vertical">
 									<div class="input-group">
 											<span class="input-group-addon"><span class="glyphicon glyphicon-download"></span></span>
@@ -335,6 +428,8 @@ It is possible to set constraints on feasible strategies using functions. (see f
 								</div>
 							</div>
 							<div class="tab-pane fade" id="tab4default">
+								Click on the "Browse" button to choose a configuration file formerly saved from your computer.<br><br>
+								After Finding a file, click "Load The Game Now" to load the configuration to the calculator.<br><br>
 								<div class="btn-group-vertical">
 									<div class="input-group">
 											<span class="input-group-addon"><span class="glyphicon glyphicon-upload"></span></span>
