@@ -305,16 +305,22 @@ It is possible to set constraints on feasible strategies using functions. (see f
 							The game is defined by the strategies, payoff functions and dimensions you choose. Clicking Calculate! will find any local and global multi-dimensional equilibria for those settings. 
 							The calculator supports basic excel functions. Additional app-specific functions are defined in the functions tab.
 							Notice that you can easily input examples from the paper – Settlements, Blotto, Tennis – in the example tab.
-							<div class="btn-group" >
-									<br>
-									Press the example you wish to calculate. Its settings will be automatically defined in the calculator. Clicking Calculate! will find any local and global multi-dimensional equilibria for the example.
-								  <br>
-								  <br>
-								  <button type="button" class="btn btn-info" onClick="load_example('Settlements')">Settlements</button>
-								  <button type="button" class="btn btn-info" onClick="load_example('Blotto_loc')">Blotto w\ location</button>
-								  <button type="button" class="btn btn-info" onClick="load_example('Blotto_center')">Blotto w\ center</button>
-								  <button type="button" class="btn btn-info" onClick="load_example('Tennis')">Tennis</button>
-							</div>
+								<div class="btn-group" >
+										<br>
+										Press the example you wish to calculate. Its settings will be automatically defined in the calculator. Clicking Calculate! will find any local and global multi-dimensional equilibria for the example.
+									  <br>
+									  <br>
+									  <button type="button" class="btn btn-info" onClick="load_example('Settlements')">Settlements</button>
+									  <button type="button" class="btn btn-info" onClick="load_example('Blotto_center')">Blotto with center</button>
+									  <button type="button" class="btn btn-info" onClick="load_example('Tennis')">Tennis</button>
+								</div>
+								<div class="btn-group" >
+								<br>
+								These are additional examples that do not appear in the paper:
+								<br>
+								<br>
+									  <button type="button" class="btn btn-info" onClick="load_example('Blotto_loc')">Blotto with location</button>
+								</div>
 							</div>
 							<div class="tab-pane fade" id="tab2default">
 								functions
