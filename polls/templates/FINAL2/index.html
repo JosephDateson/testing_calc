@@ -325,95 +325,77 @@ It is possible to set constraints on feasible strategies using functions. (see f
 								</div>
 							</div>
 							<div class="tab-pane fade" id="tab2default">
-								<table>
-									<tr>
-										<td>
-											exists(i,j,si=rj)
-										</td>
-										<td>
-											A boolean function that returns True only if there exist indices i and j for which the condition (here: si=rj) is satisfied.
-										</td>
-									</tr>
-									<tr>
-										<td>
-											foreach(i,si<=s1)
-										</td>
-										<td>
-											A boolean function that returns True only if for each index i, the condition (here: si<=s1) is satisfied.
-										</td>
-									</tr>
-									
-									<tr>
-										<td>
-											SUM(s)=0
-										</td>
-										<td>
-											A boolean function that returns True only if a strategy's entries sum equals to the chosen number (here: 0).
-										</td>
-									</tr>
-									<tr>
-										<td>
-											LEN(s)=2
-										</td>
-										<td>
-											A boolean function that returns True only if the strategy's length is 2.
-										</td>
-									</tr>
-									<tr>
-										<td>
-											else
-										</td>
-										<td>
-											Can be used in the Dimensions section, and chooses the relevant name only if all other conditions are not satisfied.
-										</td>
-									</tr>
-									
-									<tr>
-										<td>
-											percell(i,si=ri)
-										</td>
-										<td>
-											Can be used in the Payoff function section, and it sums the payment specified for each equal entry in both players' strategies.
-										</td>
-									</tr>
-									<tr>
-										<td>
-											countcells(0)=2
-										</td>
-										<td>
-											Can be used in the Payoff function section. A boolean function that returns True only if the number of entries equal to the requested number (here: 0) is equal to the chosen number (here: 2).	
-										</td>
-									</tr>
-									
-									<tr>
-										<td>
-											decreasing()
-										</td>
-										<td>
-											Can be used in the Payoff function section. A boolean function that returns True only if the strategy is in weak decreasing order (si>=si+1).
-										</td>
-									</tr>
-									<tr>
-										<td>
-											increasing()
-										</td>
-										<td>
-											Can be used in the Payoff function section. A boolean function that returns True only if the strategy is in weak increasing order (si<=si+1).
-										</td>
-									</tr>
-									
-									
-									
-									<tr>
-										<td>
-											percellcost(i,-si*0.33)
-										</td>
-										<td>
-											Can be used in the Payoff function section. A value function that adds a cost per entry (here: substracting 0.33*si from each player for each entry in a strategy). 
-										</td>
-									</tr>
+											<div class="table100 ver4 ">
+					<div class="table100-head">
+						<table>
+							<thead>
+								<tr class="row100 head">
+									<th class="cell100 column1">Expression</th>
+									<th class="cell100 column2">Explanation</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
 
-								</table>
+					<div class="table100-body js-pscroll">
+						<table>
+							<tbody>
+								<tr class="row100 body">
+									<td class="cell100 column1">exists(i,j,si=rj)</td>
+									<td class="cell100 column2">
+											A boolean function that returns True only if there exist indices i and j for which the condition (here: si=rj) is satisfied.</td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">foreach(i,si<=s1)</td>
+									<td class="cell100 column2">A boolean function that returns True only if for each index i, the condition (here: si<=s1) is satisfied.</td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">SUM(s)=0</td>
+									<td class="cell100 column2">A boolean function that returns True only if a strategy's entries sum equals to the chosen number (here: 0).</td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">LEN(s)=2</td>
+									<td class="cell100 column2">A boolean function that returns True only if the strategy's length is as chosen (here: 2).</td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">else</td>
+									<td class="cell100 column2">Can be used in the Dimensions section, and chooses the relevant name only if all other conditions are not satisfied.</td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">percell(i,si=ri)</td>
+									<td class="cell100 column2">Can be used in the Payoff function section, and it sums the payment specified for each equal entry in both players' strategies.</td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">countcells(0)=2</td>
+									<td class="cell100 column2">Can be used in the Payoff function section. A boolean function that returns True only if the number of entries equal to the requested number (here: 0) is equal to the chosen number (here: 2).</td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">decreasing()</td>
+									<td class="cell100 column2">Can be used in the Payoff function section. A boolean function that returns True only if the strategy is in weak decreasing order (si>=si+1).</td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">increasing()</td>
+									<td class="cell100 column2">Can be used in the Payoff function section. A boolean function that returns True only if the strategy is in weak increasing order (si<=si+1).</td>
+								</tr>
+
+								<tr class="row100 body">
+									<td class="cell100 column1">percellcost(i,-si*0.33)</td>
+									<td class="cell100 column2">Can be used in the Payoff function section. A value function that adds a cost per entry (here: substracting 0.33*si from each player for each entry in a strategy).</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
 							</div>
 							<div class="tab-pane fade" id="tab3default">
 								You can save the current data you have filled in the calculator following the instructions:<br>
