@@ -9,3 +9,119 @@
     /* symbol for "collapsed" panels */
     content: "\e080";    /* adjust as needed, taken from bootstrap.css */
 }
+
+
+/*//////////////////////////////////////////////////////////////////
+[ FONT ]*/
+
+
+@font-face {
+  font-family: Lato-Regular;
+  src: url('../fonts/Lato/Lato-Regular.ttf'); 
+}
+
+@font-face {
+  font-family: Lato-Bold;
+  src: url('../fonts/Lato/Lato-Bold.ttf'); 
+}
+
+
+
+
+
+
+/*//////////////////////////////////////////////////////////////////
+[ Table ]*/
+.table100 {
+  background-color: #fff;
+  
+}
+
+table {
+  width: 100%;
+}
+td {
+  font-weight: unset;
+  padding-right: 10px;
+}
+th{
+	font-weight: unset;
+  padding-left: 70px;
+}
+
+.column1 {
+  width: 30%;
+  padding-left: 40px;
+}
+
+.column2 {
+  width: 70%;
+}
+
+
+
+.table100-head th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.table100-body td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+/*==================================================================
+[ Fix header ]*/
+.table100 {
+  position: relative;
+  padding-top: 60px;
+  
+}
+
+.table100-head {
+  position: absolute;
+  width: 50%;
+  top: 0;
+  left: 0;
+}
+
+.table100-body {
+  max-height: 400px;
+  overflow: auto;
+}
+
+
+
+/*==================================================================
+[ Ver4 ]*/
+
+
+
+.table100.ver4 th {
+  font-family: Lato-Bold;
+  font-size: 18px;
+  color: #4272d7;
+  line-height: 1.4;
+
+  background-color: transparent;
+  border-bottom: 2px solid #f2f2f2;
+}
+
+.table100.ver4 .column1 {
+  padding-left: 7px;
+}
+
+.table100.ver4 td {
+  font-family: Lato-Regular;
+  font-size: 15px;
+  color: #808080;
+  line-height: 1.4;
+}
+
+.table100.ver4 .table100-body tr {
+  border-bottom: 1px solid #f2f2f2;
+}
+
+/*---------------------------------------------*/
+
+
