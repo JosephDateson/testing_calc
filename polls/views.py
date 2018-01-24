@@ -432,7 +432,7 @@ def create_html_table(dimensions_matrix,dimensions_rows_categories_names,dimensi
             table_content += "</tr>"
         return table_content
     print "html\n\n"
-    html_string = '<table class="table table-bordered fixed"><thead><tr><th class="col-xs-3">Partitions of <br>strategies into cells<br><a href="#" id="show_hide_strategies" class="on_green" onclick="return myFunction(1);">(click to show all strategies)</a> </th>'
+    html_string = '<table class="table table-bordered fixed"><thead><tr><th class="col-xs-3">Partitions of <br>strategies into cells<br><a id="show_hide_strategies" class="on_green" onclick="return myFunction(1);">(click to show all strategies)</a> </th>'
     for col in dimensions_columns_categories_names:
         html_string += "<th>"+col+"</th>"
     html_string += "</tr></thead>"
@@ -465,7 +465,7 @@ def create_html_table(dimensions_matrix,dimensions_rows_categories_names,dimensi
             if is_Global_eq:
                 strategies = '<font color="red">'+strategies+'</font>'
             html_string +="<td class='formatted_square_hide'>" + ' <a onclick="cell_name=document.getElementById(\'chosen_cell\');cell_name.innerHTML=\'('+row+','+col+')\';all_extra_data' + str(i) + str(j) + "_" + str(
-            in_house_hash(str(strategy_for_link))) + '()" href="#">' +  strategies   + '</a>'+ "</td>"
+            in_house_hash(str(strategy_for_link))) + '()" >' +  strategies   + '</a>'+ "</td>"
         html_string += "</tr>"
     html_string += "</table>"
     #Adding info for each strategy
