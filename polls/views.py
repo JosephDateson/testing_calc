@@ -178,9 +178,9 @@ def exclude_self_index_from_cond(home_made_func):
     return home_made_func
 
 def parse_conditions(conds):
-    logging.debug(parse_conditions.__name__ + ":before encode_conditions:" + "conds=", str(conds))
+    logging.debug(parse_conditions.__name__ + ":before encode_conditions:" + "conds="+ str(conds))
     conds = encode_conditions(conds)
-    logging.debug(parse_conditions.__name__+":"+"conds=",str(conds))
+    logging.debug(parse_conditions.__name__+":"+"conds="+str(conds))
     python_inputs = []
     for i in conds:
         # print "**************************************************"

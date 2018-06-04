@@ -10,6 +10,4 @@ logging:
 log-in:
 	activate git cmd
 	run: heroku login
-	run: git add -A
-		 git commit -m "Comment out prints"
-		 git push heroku master
+	run: git add -A && git commit -m "Debug" && git push heroku master
