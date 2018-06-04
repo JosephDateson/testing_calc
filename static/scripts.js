@@ -35,7 +35,7 @@ var field_block_name = {
 	"if_fields_payment":'all_ifs',
 	"if_fields_dimension_rows_names":"all_ifs_categories_rows",
 	"if_fields_dimension_columns_names":"all_ifs_categories_columns",
-	"remove_class_variable":"all_variables_definitions",
+	"variables_definition":"all_variables_definitions",
 };
 function add_field(func_name,brackets_name="")
 {
