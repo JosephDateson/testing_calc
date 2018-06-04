@@ -387,9 +387,9 @@ def calc_Global_eq(dimensions_matrix):
 
 def full_calc(strategies_vector, dimensions_rows_conds, dimensions_columns_conds, dimensions_rows_categories_names,
               dimensions_columns_categories_names, dimensions_ordered_row, dimensions_ordered_col, payment_conds):
-    import logging
-    logger = logging.getLogger('testlogger')
-    logger.error('*****************************This is a simple log message')
+    # import logging
+    # logger = logging.getLogger('testlogger')
+    print('*****************************This is a simple log message')
     # print "dimensions_rows_conds="+str(dimensions_rows_conds)
 
     dimensions_rows_conds = parse_conditions(dimensions_rows_conds)

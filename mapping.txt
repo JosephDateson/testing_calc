@@ -1,2 +1,15 @@
 Changing the Index:        polls\templates\FINAL2
 Changing the static files: static\
+logging:
+	in the git cmd:
+		heroku logs --tail
+	in the python code:
+		import logging
+		logger = logging.getLogger('testlogger')
+		logger.error('*****************************This is a simple log message')
+log-in:
+	activate git cmd
+	run: heroku login
+	run: git add -A
+		 git commit -m "Comment out prints"
+		 git push heroku master
