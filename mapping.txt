@@ -1,1 +1,2 @@
-Changing the Index: polls\templates\FINAL2
+Changing the Index:        polls\templates\FINAL2
+Changing the static files: static\
