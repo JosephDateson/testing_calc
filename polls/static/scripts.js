@@ -4,22 +4,20 @@
 /*************************************************************************************************************************************************************/
 /*************************************************************************************************************************************************************/
 /*Add and remove fields*/
-var elements_types = ["if_fields","if_fields_payment","if_fields_dimension_rows_names","if_fields_dimension_columns_names","variables_definition"];
+var elements_types = ["if_fields","if_fields_payment","if_fields_dimension_rows_names","if_fields_dimension_columns_names"];
 var brackets_names = ["","myCanvas","myCanvas2","myCanvas3"];
 var elements_num = {
 	"if_fields":1,
 	"if_fields_payment":1,
 	"if_fields_dimension_rows_names":1,
-	"if_fields_dimension_columns_names":1,
-	"variables_definition":1,
+	"if_fields_dimension_columns_names":1
 };
 
 var func_names = {
 	"if_fields":"remove_constraint",
 	"if_fields_payment":"remove_class",
 	"if_fields_dimension_rows_names":"remove_class_row",
-	"if_fields_dimension_columns_names":"remove_class_column",
-	"variables_definition":"remove_class_variable"
+	"if_fields_dimension_columns_names":"remove_class_column"
 };
 
 var fields_content = {
@@ -27,15 +25,13 @@ var fields_content = {
 	"if_fields_payment": ['<div class="col-sm-3 nopadding">	<div class="form-group"><input type="text" class="form-control" id="if_res" name="payment_if_res_','" value="" placeholder="payment"></div>		</div><div class="col-sm-5 nopadding"><div class="form-group"><input type="text" class="form-control" id="if_cond" name="payment_if_cond_','" value="" placeholder="condition"></div></div><div class="col-sm-1 nopadding">    <div class="form-group">   <div class="input-group">            <div class="input-group-btn">                <button class="btn btn-danger" type="button" onclick="remove_field(\'if_fields_payment\',',',brackets_name=\'myCanvas\');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>            </div>        </div>    </div></div>'],
 	"if_fields_dimension_rows_names":['<div class="col-sm-3 nopadding">   <div class="form-group"><input type="text" class="form-control" id="if_res" name="dimensions_row_category_name_','" value="" placeholder="Name"></div></div><div class="col-sm-5 nopadding"><div class="form-group"><input type="text" class="form-control" id="if_cond" name="dimensions_row_if_cond_','" value="" placeholder="condition"></div></div><div class="col-sm-1 nopadding"><div class="form-group"><div class="input-group"><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_field(\'if_fields_dimension_rows_names\',',',brackets_name=\'myCanvas2\');"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div> </div></div></div>'],
 	"if_fields_dimension_columns_names":['<div class="col-sm-3 nopadding">   <div class="form-group"><input type="text" class="form-control" id="if_res" name="dimensions_column_category_name_','" value="" placeholder="Name"></div></div><div class="col-sm-5 nopadding"><div class="form-group"><input type="text" class="form-control" id="if_cond" name="dimensions_column_if_cond_','" value="" placeholder="condition"></div></div><div class="col-sm-1 nopadding"><div class="form-group"><div class="input-group"><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_field(\'if_fields_dimension_columns_names\',',',brackets_name=\'myCanvas3\');"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div> </div></div></div>'],
-	"variables_definition":['<div class="col-sm-4 nopadding"><div class="form-group"><input type="text" class="form-control" id="var_name" name="var_name_','" value="" placeholder="Name"></div></div><div class="col-sm-1 control-label" ><h4>=</h4></div><div class="col-sm-4 nopadding"><div class="form-group"><input type="text" class="form-control" id="var_val" name="var_val_','" value="" placeholder='Value'></div></div><div class="col-sm-2 nopadding"><div class="form-group"><div class="input-group input-group-sm"><div class="input-group input-group-sm-btn"><button id="plus_button" class="btn btn-danger" type="button" onclick="remove_field(\'variables_definition\',',',brackets_name=\'\');"> <span id="minus_button_glyphicon" class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div>'],
 };
 
 var field_block_name = {
 	"if_fields":"if_fields",
 	"if_fields_payment":'all_ifs',
 	"if_fields_dimension_rows_names":"all_ifs_categories_rows",
-	"if_fields_dimension_columns_names":"all_ifs_categories_columns",
-	"variables_definition":"all_variables_definitions"
+	"if_fields_dimension_columns_names":"all_ifs_categories_columns"
 };
 function add_field(func_name,brackets_name="")
 {
@@ -108,7 +104,7 @@ function remove_all_fields()
 /*************************************************************************************************************************************************************/
 /*load and save files*/
 var load_data = {
-	'Settlements':{strategies_vector_single:'1,2,3,4,5,(1,2),(2,3),(3,4),(4,5)',strategies_vector_length:'',strategies_full_set:'',strategies_lower_bound:'',strategies_upper_bound:'',strategies_constraint_1:'',payment_if_res_1:'0',payment_if_cond_1:'exists(i,j,si=rj)',payment_if_res_2:'3',payment_if_cond_2:'AND(NOT(exists(i,j,si=rj)),LEN(s)=2)',payment_if_res_3:'2',payment_if_cond_3:'AND(NOT(exists(i,j,si=rj)),NOT(LEN(s)=2))',dimensions_row_category_name_1:'center',dimensions_row_if_cond_1:'exists(i,si=3)',dimensions_row_category_name_2:'not center',dimensions_row_if_cond_2:'else',dimensions_column_category_name_1:'one',dimensions_column_if_cond_1:'else',dimensions_column_category_name_2:'two',dimensions_column_if_cond_2:'len(s)>1',},
+	'Settlements':{strategies_vector_single:'1,2,3,4,5,(1,2),(2,3),(3,4),(4,5)',strategies_vector_length:'',strategies_full_set:'',strategies_lower_bound:'',strategies_upper_bound:'',strategies_constraint_1:'',payment_if_res_1:'0',payment_if_cond_1:'exists(i,j,si=rj)',payment_if_res_2:'3',payment_if_cond_2:'AND(NOT(exists(i,j,si=rj)),LEN(s)=2)',payment_if_res_3:'2',payment_if_cond_3:'AND(NOT(exists(i,j,si=rj)),LEN(s)=1)',dimensions_row_category_name_1:'center',dimensions_row_if_cond_1:'exists(i,si=3)',dimensions_row_category_name_2:'not center',dimensions_row_if_cond_2:'else',dimensions_column_category_name_1:'one',dimensions_column_if_cond_1:'else',dimensions_column_category_name_2:'two',dimensions_column_if_cond_2:'len(s)>1',},
 	'Blotto_loc':{strategies_vector_single:'',strategies_vector_length:'3',strategies_full_set:'0,1,2,3,4,5,6,7',strategies_lower_bound:'',strategies_upper_bound:'',strategies_constraint_1:'SUM(s)=7',payment_if_res_1:'0.5',payment_if_cond_1:'percell(i,si=ri)',payment_if_res_2:'1',payment_if_cond_2:'percell(i,si>ri)',dimensions_row_category_name_1:'L',dimensions_row_if_cond_1:'foreach(i,si<=s1)',dimensions_row_category_name_2:'S',dimensions_row_if_cond_2:'foreach(i,si>=s1)',dimensions_row_category_name_3:'M',dimensions_row_if_cond_3:'else',dimensions_column_category_name_1:'1',dimensions_column_if_cond_1:'countcells(0)=2',dimensions_column_category_name_2:'2',dimensions_column_if_cond_2:'countcells(0)=1',dimensions_column_category_name_3:'3',dimensions_column_if_cond_3:'else',},
 	'Blotto_center':{strategies_vector_single:'',strategies_vector_length:'3',strategies_full_set:'0,1,2,3,4,5,6',strategies_lower_bound:'',strategies_upper_bound:'',strategies_constraint_1:'SUM(s)=6',payment_if_res_1:'0.5',payment_if_cond_1:'percell(i,si=ri)',payment_if_res_2:'1',payment_if_cond_2:'percell(i,si>ri)',dimensions_row_category_name_1:'decreasing',dimensions_row_if_cond_1:'decreasing()',dimensions_row_category_name_2:'increasing',dimensions_row_if_cond_2:'increasing()',dimensions_row_category_name_3:'other',dimensions_row_if_cond_3:'else',dimensions_column_category_name_1:'1',dimensions_column_if_cond_1:'countcells(0)+countcells(1)=2',dimensions_column_category_name_2:'2',dimensions_column_if_cond_2:'countcells(0)+countcells(1)=1',dimensions_column_category_name_3:'3',dimensions_column_if_cond_3:'else',},
 	'Tennis':{strategies_vector_single:'',strategies_vector_length:'3',strategies_full_set:'0,1,2',strategies_lower_bound:'',strategies_upper_bound:'',strategies_constraint_1:'',payment_if_res_1:'1',payment_if_cond_1:'percell(i,si>ri)',payment_if_res_2:'0.5',payment_if_cond_2:'percell(i,si=ri)',payment_if_res_3:'percellcost(i,-si*0.33)',payment_if_cond_3:'TRUE',dimensions_row_category_name_1:'Strong',dimensions_row_if_cond_1:'MAX(s)=cell(s1)',dimensions_row_category_name_2:'not Strong',dimensions_row_if_cond_2:'else',dimensions_column_category_name_1:'0',dimensions_column_if_cond_1:'SUM(s)=0',dimensions_column_category_name_2:'1',dimensions_column_if_cond_2:'SUM(s)=1',dimensions_column_category_name_3:'2',dimensions_column_if_cond_3:'SUM(s)=2',dimensions_column_category_name_4:'3',dimensions_column_if_cond_4:'SUM(s)=3',dimensions_column_category_name_5:'4',dimensions_column_if_cond_5:'SUM(s)=4',dimensions_column_category_name_6:'5',dimensions_column_if_cond_6:'SUM(s)=5',dimensions_column_category_name_7:'6',dimensions_column_if_cond_7:'SUM(s)=6'},
@@ -181,9 +177,39 @@ function load(jsonData){
 
 function change_collapse(has_strategies_vector_single)
 {
-	var collapse = document.getElementById("collapse1");
-	var new_mode = has_strategies_vector_single ? "panel-collapse" : "panel-collapse collapse";
-	collapse.setAttribute("class",new_mode);
+	
+	if (has_strategies_vector_single)
+	{
+		var new_collapse_mode = "panel-collapse collapse in";
+		var new_style_collapse_mode = "";
+		var comp_new_style_collapse_mode = "height: 0px;";
+		var comp_new_collapse_mode = "panel-collapse collapse";
+		var new_acc_mode = "accordion-toggle";
+		var comp_new_acc_mode = "accordion-toggle collapsed";
+	}
+	else
+	{
+		var new_collapse_mode = "panel-collapse collapse";
+		var new_style_collapse_mode = "height: 0px;";
+		var comp_new_style_collapse_mode = "";
+		var comp_new_collapse_mode = "panel-collapse collapse in";
+		var new_acc_mode = "accordion-toggle collapsed";
+		var comp_new_acc_mode = "accordion-toggle";
+	}
+	var collapse_manual = document.getElementById("collapse1");
+	var collapse_gen 	= document.getElementById("collapse2");
+	var acc_collapse_manual = document.getElementById("accordion_collapse1");
+	var acc_collapse_gen 	= document.getElementById("accordion_collapse2");
+	collapse_manual.setAttribute("class",new_collapse_mode);
+	collapse_manual.setAttribute("aria-expanded",has_strategies_vector_single);
+	collapse_manual.setAttribute("style",new_style_collapse_mode);
+	collapse_gen.setAttribute("class",comp_new_collapse_mode);
+	collapse_gen.setAttribute("aria-expanded",!has_strategies_vector_single);
+	collapse_gen.setAttribute("style",comp_new_style_collapse_mode);
+	acc_collapse_manual.setAttribute("class",new_acc_mode);
+	acc_collapse_manual.setAttribute("aria-expanded",has_strategies_vector_single);
+	acc_collapse_gen.setAttribute("class",comp_new_acc_mode);
+	acc_collapse_gen.setAttribute("aria-expanded",!has_strategies_vector_single);
 }
 function load_example(example_name)
 {
@@ -216,6 +242,8 @@ function load_file(e)
 	document.getElementById('load_btn').setAttribute("onClick", "load(uploaded_data)");
 	reader.readAsText(file);
 }
+
+
 /*************************************************************************************************************************************************************/
 /*************************************************************************************************************************************************************/
 /*************************************************************************************************************************************************************/
