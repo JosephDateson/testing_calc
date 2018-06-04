@@ -178,7 +178,9 @@ def exclude_self_index_from_cond(home_made_func):
     return home_made_func
 
 def parse_conditions(conds):
+    logging.debug(parse_conditions.__name__ + ":before encode_conditions:" + "conds=", str(conds))
     conds = encode_conditions(conds)
+    logging.debug(parse_conditions.__name__+":"+"conds=",str(conds))
     python_inputs = []
     for i in conds:
         # print "**************************************************"
@@ -389,7 +391,7 @@ def full_calc(strategies_vector, dimensions_rows_conds, dimensions_columns_conds
               dimensions_columns_categories_names, dimensions_ordered_row, dimensions_ordered_col, payment_conds):
     # import logging
     # logger = logging.getLogger('testlogger')
-    print('*****************************This is a simple log message')
+    # print('*****************************This is a simple log message')
     # print "dimensions_rows_conds="+str(dimensions_rows_conds)
 
     dimensions_rows_conds = parse_conditions(dimensions_rows_conds)
@@ -969,15 +971,15 @@ def index(request):
 
                 strategies_constraints=convert_to_excel_conds(strategies_constraints)
                 strategies_vectors = strategies_filter(all_strategies_generated,strategies_constraints)
-            logging.debug("strategies_vectors="+str(strategies_vectors))
-            logging.debug(str(dimensions_rows_conds))
-            logging.debug("strategies all")
-            logging.debug("all atrategies=" + str(all_strategies_generated))
-            if DEBUG:
-                logging.debug("len(all_strategies_generated)=" + str(len(all_strategies_generated)))
-            logging.debug("payment_conds="+str(payment_conds))
-            logging.debug("dimensions_columns_categories_names="+str(dimensions_columns_categories_names))
-            logging.debug("dimensions_rows_categories_names="+str(dimensions_rows_categories_names))
+            # logging.debug("strategies_vectors="+str(strategies_vectors))
+            # logging.debug(str(dimensions_rows_conds))
+            # logging.debug("strategies all")
+            # logging.debug("all atrategies=" + str(all_strategies_generated))
+            # if DEBUG:
+            #     logging.debug("len(all_strategies_generated)=" + str(len(all_strategies_generated)))
+            # logging.debug("payment_conds="+str(payment_conds))
+            # logging.debug("dimensions_columns_categories_names="+str(dimensions_columns_categories_names))
+            # logging.debug("dimensions_rows_categories_names="+str(dimensions_rows_categories_names))
             dimensions_matrix=full_calc(strategies_vectors, dimensions_rows_conds, dimensions_columns_conds,dimensions_rows_categories_names,dimensions_columns_categories_names,dimensions_rows_categories_names,dimensions_columns_categories_names,payment_conds)
             return HttpResponse(create_html_table(dimensions_matrix,dimensions_rows_categories_names,dimensions_columns_categories_names))
         else:
