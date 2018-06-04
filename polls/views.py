@@ -975,6 +975,8 @@ def index(request):
             logging.debug("payment_conds="+str(payment_conds))
             logging.debug("dimensions_columns_categories_names="+str(dimensions_columns_categories_names))
             logging.debug("dimensions_rows_categories_names="+str(dimensions_rows_categories_names))
+            import pdb;
+            pdb.set_trace()
             dimensions_matrix=full_calc(strategies_vectors, dimensions_rows_conds, dimensions_columns_conds,dimensions_rows_categories_names,dimensions_columns_categories_names,dimensions_rows_categories_names,dimensions_columns_categories_names,payment_conds)
             return HttpResponse(create_html_table(dimensions_matrix,dimensions_rows_categories_names,dimensions_columns_categories_names))
         else:
