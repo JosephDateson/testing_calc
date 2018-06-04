@@ -20,6 +20,74 @@
         <div class="col-sm-6">
                     <!-- Form start -->
 				<div class="row">
+						<!--##########################################################################################-->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<a id="accordion_collapse2" class="accordion-toggle collapsed" data-toggle="collapse" href="#collapse20"><b>Variables definition</B></a>
+								<a data-trigger="focus" href="#" data-toggle="popover" title="How to use the Variables definition panel?" data-content="One may want to use predefined variables and use them across the calculator.
+								It can be done easily using this panel, by inputing the name of the variable and its value.">
+								  <span class="glyphicon glyphicon-question-sign"></span>
+								</a>
+							</div>
+
+						
+							<div id="collapse20" class="panel-collapse collapse">
+								<div class="panel-body" >
+
+									<div class="col-sm-12" id="variables_definition">
+
+										<div class="form-group" id="all_variables_definitions">
+											<div class="form-group remove_class_variable1" id="remove_all_fields">
+												<div class="col-sm-4 nopadding">
+													<div class="form-group">
+														<input type="text" class="form-control" id="var_name" name="var_name_1" value="" placeholder="Name">
+													</div>
+												</div>
+												<div class="col-sm-1 control-label" ><h4>=</h4></div>
+												<div class="col-sm-4 nopadding">
+													<div class="form-group">
+														<input type="text" class="form-control" id="var_val" name="var_val_1" value="" placeholder='Value'>
+													</div>
+												</div>
+												
+												<div class="col-sm-2 nopadding">
+													<div class="form-group">
+														<div class="input-group input-group-sm">
+															<div class="input-group input-group-sm-btn">
+																<button id="plus_button" class="btn btn-danger" type="button" onclick="remove_field('variables_definition',1,brackets_name='');"> 
+																	<span id="minus_button_glyphicon" class="glyphicon glyphicon-minus" aria-hidden="true"></span> 
+																</button>
+															</div>
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-2 nopadding">
+											<div class="form-group">
+												<br>
+													<div class="input-group input-group-sm">
+														<div class="input-group input-group-sm-btn">
+															<button class="btn btn-success" type="button" onclick="add_field('if_fields_dimension_rows_names',brackets_name='myCanvas2');"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+														</div>
+
+													</div>
+											</div>
+										</div>
+										<div class="clear"></div>
+									</div>
+								
+
+
+								</div>
+
+								<div class="panel-footer"><small>Click <span class="glyphicon glyphicon-plus gs"></span> to add another if field</small>, <small>Click <span class="glyphicon glyphicon-minus gs"></span> to remove the field </small></div>
+
+							</div>
+						</div>
+						<!--##########################################################################################-->
+
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<b>Strategies</b> 
@@ -56,26 +124,7 @@ It is possible to set constraints on feasible strategies using functions. (see f
 												<input name="strategies_vector_length" placeholder="Fill vector's length" class="form-control"  type="text">
 											</div>
 										</div>
-										<!--
-										<div class="col-sm-10">
-											<div class="well-block">
-												<div class="well-title">									
-													<div class="col-sm-1 control-label" >s<sub>i</sub><font face="Symbol">&#206;</font></div> 
-													<div class="input-group input-group-sm">
-														<div class="form-group">
-														<div class="input-group input-group-sm">
-															<select class="form-control" id="educationDate" name="strategies_super_set">
 
-																<option value="integer_num"><span class="texhtml">ℤ</span></option>
-																<option value="real_num"><span class="texhtml">ℝ</span></option>
-															</select>
-														</div>
-													</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										-->
 									</div>
 									<br>
 								
@@ -160,6 +209,7 @@ It is possible to set constraints on feasible strategies using functions. (see f
 
 							</div>
 						</div>
+
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<a id="accordion_collapse1" class="accordion-toggle collapsed" data-toggle="collapse" href="#collapse1" >

@@ -4,20 +4,22 @@
 /*************************************************************************************************************************************************************/
 /*************************************************************************************************************************************************************/
 /*Add and remove fields*/
-var elements_types = ["if_fields","if_fields_payment","if_fields_dimension_rows_names","if_fields_dimension_columns_names"];
+var elements_types = ["if_fields","if_fields_payment","if_fields_dimension_rows_names","if_fields_dimension_columns_names","variables_definition"];
 var brackets_names = ["","myCanvas","myCanvas2","myCanvas3"];
 var elements_num = {
 	"if_fields":1,
 	"if_fields_payment":1,
 	"if_fields_dimension_rows_names":1,
-	"if_fields_dimension_columns_names":1
+	"if_fields_dimension_columns_names":1,
+	"variables_definition":1,
 };
 
 var func_names = {
 	"if_fields":"remove_constraint",
 	"if_fields_payment":"remove_class",
 	"if_fields_dimension_rows_names":"remove_class_row",
-	"if_fields_dimension_columns_names":"remove_class_column"
+	"if_fields_dimension_columns_names":"remove_class_column",
+	"variables_definition":"remove_class_variable"
 };
 
 var fields_content = {
@@ -25,13 +27,15 @@ var fields_content = {
 	"if_fields_payment": ['<div class="col-sm-3 nopadding">	<div class="form-group"><input type="text" class="form-control" id="if_res" name="payment_if_res_','" value="" placeholder="payment"></div>		</div><div class="col-sm-5 nopadding"><div class="form-group"><input type="text" class="form-control" id="if_cond" name="payment_if_cond_','" value="" placeholder="condition"></div></div><div class="col-sm-1 nopadding">    <div class="form-group">   <div class="input-group">            <div class="input-group-btn">                <button class="btn btn-danger" type="button" onclick="remove_field(\'if_fields_payment\',',',brackets_name=\'myCanvas\');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>            </div>        </div>    </div></div>'],
 	"if_fields_dimension_rows_names":['<div class="col-sm-3 nopadding">   <div class="form-group"><input type="text" class="form-control" id="if_res" name="dimensions_row_category_name_','" value="" placeholder="Name"></div></div><div class="col-sm-5 nopadding"><div class="form-group"><input type="text" class="form-control" id="if_cond" name="dimensions_row_if_cond_','" value="" placeholder="condition"></div></div><div class="col-sm-1 nopadding"><div class="form-group"><div class="input-group"><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_field(\'if_fields_dimension_rows_names\',',',brackets_name=\'myCanvas2\');"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div> </div></div></div>'],
 	"if_fields_dimension_columns_names":['<div class="col-sm-3 nopadding">   <div class="form-group"><input type="text" class="form-control" id="if_res" name="dimensions_column_category_name_','" value="" placeholder="Name"></div></div><div class="col-sm-5 nopadding"><div class="form-group"><input type="text" class="form-control" id="if_cond" name="dimensions_column_if_cond_','" value="" placeholder="condition"></div></div><div class="col-sm-1 nopadding"><div class="form-group"><div class="input-group"><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_field(\'if_fields_dimension_columns_names\',',',brackets_name=\'myCanvas3\');"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button> </div> </div></div></div>'],
+	"variables_definition":['<div class="col-sm-4 nopadding"><div class="form-group"><input type="text" class="form-control" id="var_name" name="var_name_','" value="" placeholder="Name"></div></div><div class="col-sm-1 control-label" ><h4>=</h4></div><div class="col-sm-4 nopadding"><div class="form-group"><input type="text" class="form-control" id="var_val" name="var_val_','" value="" placeholder='Value'></div></div><div class="col-sm-2 nopadding"><div class="form-group"><div class="input-group input-group-sm"><div class="input-group input-group-sm-btn"><button id="plus_button" class="btn btn-danger" type="button" onclick="remove_field(\'variables_definition\',',',brackets_name=\'\');"> <span id="minus_button_glyphicon" class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div>'],
 };
 
 var field_block_name = {
 	"if_fields":"if_fields",
 	"if_fields_payment":'all_ifs',
 	"if_fields_dimension_rows_names":"all_ifs_categories_rows",
-	"if_fields_dimension_columns_names":"all_ifs_categories_columns"
+	"if_fields_dimension_columns_names":"all_ifs_categories_columns",
+	"variables_definition":"all_variables_definitions"
 };
 function add_field(func_name,brackets_name="")
 {
