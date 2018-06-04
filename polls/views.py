@@ -49,7 +49,7 @@ def not_strictly_decreasing(L):
 
 
 def encode_conditions(conditions):
-    #Replaces proprietary expressions with strings
+    # Replaces proprietary expressions with strings in order to parse excel expressions
     for i in range(len(conditions)):
         conditions[i] = conditions[i].replace("(s)", '("s")')
         conditions[i] = conditions[i].replace("(r)", '("r")')
@@ -105,6 +105,7 @@ def generate_quantifier_vector(quantifier, type='exists'):
     return (condition_vec_exp,condition_vec)
 
 def decode_conditions(conditions):
+    logging.debug(decode_conditions.__name__ + ":before " + decode_conditions.__name__ + ":" + "conds=" + str(conditions))
     for i in range(len(conditions)):
         conditions[i] = conditions[i].replace('("s")', '(s)')
         conditions[i] = conditions[i].replace('("r")', '(r)')
@@ -153,7 +154,7 @@ def decode_conditions(conditions):
                                                conditions[i])
 
                 # print "after conditions[i]="+str( conditions[i])
-
+    logging.debug(decode_conditions.__name__ + ":after  " + decode_conditions.__name__ + ":" + "conds=" + str(conditions))
     return conditions
 
 def exclude_self_index_from_cond(home_made_func):
@@ -178,9 +179,7 @@ def exclude_self_index_from_cond(home_made_func):
     return home_made_func
 
 def parse_conditions(conds):
-    logging.debug(parse_conditions.__name__ + ":before encode_conditions:" + "conds="+ str(conds))
     conds = encode_conditions(conds)
-    logging.debug(parse_conditions.__name__+":"+"conds="+str(conds))
     python_inputs = []
     for i in conds:
         # print "**************************************************"
