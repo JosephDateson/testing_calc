@@ -23,8 +23,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/polls/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="987" column="35" lean-forward="false" selection-start-line="987" selection-start-column="16" selection-end-line="987" selection-end-column="35" />
+            <state relative-caret-position="116">
+              <caret line="986" column="200" lean-forward="false" selection-start-line="986" selection-start-column="200" selection-end-line="986" selection-end-column="200" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
                 <element signature="e#22945#23321#0" expanded="false" />
@@ -337,7 +337,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1160" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1160" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -630,8 +630,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/polls/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="987" column="35" lean-forward="false" selection-start-line="987" selection-start-column="16" selection-end-line="987" selection-end-column="35" />
+        <state relative-caret-position="116">
+          <caret line="986" column="200" lean-forward="false" selection-start-line="986" selection-start-column="200" selection-end-line="986" selection-end-column="200" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
             <element signature="e#22945#23321#0" expanded="false" />
