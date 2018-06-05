@@ -29,6 +29,7 @@ def generate_quantifier_vector(quantifier, type='exists'):
     if exp_in_paranth == []:
         # print "empty"
         exp_in_paranth = re.findall(r'' + type + '\((.*?)\)', quantifier, re.M | re.I)
+
     exp_in_paranth = exp_in_paranth[0].split(",")
     for digit in digits:
         if digit in exp_in_paranth:
@@ -37,12 +38,11 @@ def generate_quantifier_vector(quantifier, type='exists'):
         return quantifier,quantifier
     vecs = re.findall(r'(.)\[.\]', exp_in_paranth[-1], re.M | re.I)
     condition_vec_exp = "1 " if (type in ['exists','percell'] ) else "not(0 "
-
     if type=="percellcost":
         condition_vec_exp = "1 " if (type == 'percellcost') else "not(0 "
         condition_vec_exp += "in ["+exp_in_paranth[-1]+" if True else 0 "
     elif type == "count":
-        exp_after_paranth = quantifier.split(")")[len(quantifier.split(")"))-1]
+        exp_after_paranth = quantifier.split(")")[len(quantifier.split(")")) - 1]
         condition_vec_exp = "sum([1 if " + exp_in_paranth[-1] + " else 0 "
     else:
         condition_vec_exp += "in [1 if " + exp_in_paranth[-1] + " else 0 "
@@ -56,10 +56,8 @@ def generate_quantifier_vector(quantifier, type='exists'):
     condition_vec = condition_vec_exp[condition_vec_exp.index('['):]
     return (condition_vec_exp,condition_vec)
 
-
 def decode_conditions(conditions):
     # Convert proprietary functions in already excel parsed conditions into pyton syntax
-    # logging.debug(decode_conditions.__name__ + ":before " + decode_conditions.__name__ + ":" + "conds=" + str(conditions))
     for i in range(len(conditions)):
         conditions[i] = conditions[i].replace('("s")', '(s)')
         conditions[i] = conditions[i].replace('("r")', '(r)')
@@ -81,12 +79,11 @@ def decode_conditions(conditions):
                 if quantifier == 'countcells':
                     #Non-vectorial home made functions
                     exists_with_indices[j] = exists_with_indices[j].replace('countcells', 's.count')
-                    if len(re.findall(r'(\(\d+\))', exists[j], re.M | re.I)) == 0:
-                        for equal in re.findall(r'([^<>=]=)[^<>=]',exists_with_indices[j],re.M | re.I):
-                            exists_with_indices[j] = exists_with_indices[j].replace(equal,equal+"=")
+                    logging.debug('countcells parsed value before=' + str(exists_with_indices[j]))
+                    if len(re.findall(r'(\(\d+\))', exists[j], re.M | re.I)) != len(re.findall(r'(count)', exists[j], re.M | re.I)):
                         exists_with_indices[j], exists_with_indices_vec[j] = generate_quantifier_vector(exists_with_indices[j], "count")
-
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
+                    logging.debug('countcells parsed value after=' + str(conditions[i]))
                 elif quantifier=='cell':
                     exists_with_indices[j] = exists_with_indices[j].replace('cell', '')
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
@@ -96,12 +93,16 @@ def decode_conditions(conditions):
                 else:
                     exists_with_indices[j],exists_with_indices_vec[j] = generate_quantifier_vector(exists_with_indices[j], quantifier)
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
+                    if quantifier == 'countcells':
+                        logging.debug('countcells parsed value after=' + str(conditions[i]))
                     if quantifier=='percell':
                         # print "percell"
                         # print "before conditions[i]="+str( conditions[i])
+                        logging.debug('percell parsed value before=' + str(conditions[i]))
                         full_cond_percell = ' if ' + exists_with_indices[j]
                         conditions[i] = re.sub(r'(\d+)' + re.escape(full_cond_percell),
                                      r'\1*' + 'sum('+exists_with_indices_vec[j] +')'+full_cond_percell, conditions[i])
+                        logging.debug('percell parsed value after='+str(conditions[i]))
                     elif quantifier=='percellcost':
                         # print "percellcost"
                         # print "before conditions[i]=" + str(conditions[i])
@@ -112,15 +113,15 @@ def decode_conditions(conditions):
                                                conditions[i])
 
                 # print "after conditions[i]="+str( conditions[i])
-    # logging.debug(decode_conditions.__name__ + ":after  " + decode_conditions.__name__ + ":" + "conds=" + str(conditions))
     return conditions
 
+
 # foreach = ['("S" if "foreach(i,s_i>=r_i)" else ("L" if "foreach(i,s_i<=s_1)" else "M"))']
-# countcells = ['("1" if "countcells(i,s_i>r_i)=2" else ("2" if "countcells(0)=1" else "3"))']
-# print(decode_conditions(countcells))
-quant = "s.count(0)+s.count(1)==1" #'s.count(i,s[i]>r[i])=2'
+countcells = ['("1" if "countcells(i,s_i>5)=2" else ("2" if "countcells(0)=1" else "3"))']
+print(decode_conditions(countcells))
+# quant = "countcells(i,si>5)+countcells(1)=2" #'s.count(i,s[i]>r[i])=2'
 # quant = 'foreach(i,(s[i]>=s[1] or [i]==[1]))'
-print(generate_quantifier_vector(quant,'count'))
+# print(generate_quantifier_vector(quant,'count'))
 # old_str = "s.count(0)+s.count(1)==1"
 # def replace_variables_definitions_in_condition(old_str,variables_definitions):
 #     new_str = old_str

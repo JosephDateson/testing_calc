@@ -142,7 +142,7 @@ def decode_conditions(conditions):
                     #Non-vectorial home made functions
                     exists_with_indices[j] = exists_with_indices[j].replace('countcells', 's.count')
                     logging.debug('countcells parsed value before=' + str(exists_with_indices[j]))
-                    if len(re.findall(r'(\(\d+\))', exists[j], re.M | re.I)) == len(re.findall(r'(count)', exists[j], re.M | re.I)):
+                    if len(re.findall(r'(\(\d+\))', exists[j], re.M | re.I)) != len(re.findall(r'(count)', exists[j], re.M | re.I)):
                         exists_with_indices[j], exists_with_indices_vec[j] = generate_quantifier_vector(exists_with_indices[j], "count")
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
                     logging.debug('countcells parsed value after=' + str(conditions[i]))
