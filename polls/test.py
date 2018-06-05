@@ -25,11 +25,16 @@ def generate_quantifier_vector(quantifier, type='exists'):
     '''Receive an exist condition and generate a boolean vector based on it's condition
         Type can be either exists or for_each'''
     exp_in_paranth = re.findall(r'' + type + '\((.*?\))\)', quantifier, re.M | re.I)
+    digits = re.findall(r'\((\d+)\)', quantifier, re.M | re.I)
     if exp_in_paranth == []:
         # print "empty"
         exp_in_paranth = re.findall(r'' + type + '\((.*?)\)', quantifier, re.M | re.I)
     exp_in_paranth = exp_in_paranth[0].split(",")
-
+    for digit in digits:
+        if digit in exp_in_paranth:
+            exp_in_paranth.remove(digit)
+    if len(exp_in_paranth) == 0:
+        return quantifier,quantifier
     vecs = re.findall(r'(.)\[.\]', exp_in_paranth[-1], re.M | re.I)
     condition_vec_exp = "1 " if (type in ['exists','percell'] ) else "not(0 "
 
@@ -111,19 +116,19 @@ def decode_conditions(conditions):
     return conditions
 
 # foreach = ['("S" if "foreach(i,s_i>=r_i)" else ("L" if "foreach(i,s_i<=s_1)" else "M"))']
-countcells = ['("1" if "countcells(i,s_i>r_i)=2" else ("2" if "countcells(0)=1" else "3"))']
-print(decode_conditions(countcells))
-# quant = 's.count(i,s[i]>r[i])=2'
+# countcells = ['("1" if "countcells(i,s_i>r_i)=2" else ("2" if "countcells(0)=1" else "3"))']
+# print(decode_conditions(countcells))
+quant = "s.count(0)+s.count(1)==1" #'s.count(i,s[i]>r[i])=2'
 # quant = 'foreach(i,(s[i]>=s[1] or [i]==[1]))'
-# print(generate_quantifier_vector(quant,'count'))
-old_str = "countcells(i,si>=T/2+1)=countcells(i,si>0)"
-def replace_variables_definitions_in_condition(old_str,variables_definitions):
-    new_str = old_str
-    for variables_definition in variables_definitions:
-        new_str = re.sub(r"\b" + variables_definition + r"\b", variables_definitions[variables_definition], new_str)
-
-def replace_variables_definitions(value_with_variable, variables_definitions):
-    for variables_definition in variables_definitions:
-        value_with_variable = value_with_variable.replace(variables_definition,
-                                                          variables_definitions[variables_definition])
-    return value_with_variable
+print(generate_quantifier_vector(quant,'count'))
+# old_str = "s.count(0)+s.count(1)==1"
+# def replace_variables_definitions_in_condition(old_str,variables_definitions):
+#     new_str = old_str
+#     for variables_definition in variables_definitions:
+#         new_str = re.sub(r"\b" + variables_definition + r"\b", variables_definitions[variables_definition], new_str)
+#
+# def replace_variables_definitions(value_with_variable, variables_definitions):
+#     for variables_definition in variables_definitions:
+#         value_with_variable = value_with_variable.replace(variables_definition,
+#                                                           variables_definitions[variables_definition])
+#     return value_with_variable

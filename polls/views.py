@@ -88,11 +88,16 @@ def generate_quantifier_vector(quantifier, type='exists'):
     '''Receive an exist condition and generate a boolean vector based on it's condition
         Type can be either exists or for_each'''
     exp_in_paranth = re.findall(r'' + type + '\((.*?\))\)', quantifier, re.M | re.I)
+    digits = re.findall(r'\((\d+)\)', quantifier, re.M | re.I)
     if exp_in_paranth == []:
         # print "empty"
         exp_in_paranth = re.findall(r'' + type + '\((.*?)\)', quantifier, re.M | re.I)
     exp_in_paranth = exp_in_paranth[0].split(",")
-
+    for digit in digits:
+        if digit in exp_in_paranth:
+            exp_in_paranth.remove(digit)
+    if len(exp_in_paranth) == 0:
+        return quantifier,quantifier
     vecs = re.findall(r'(.)\[.\]', exp_in_paranth[-1], re.M | re.I)
     condition_vec_exp = "1 " if (type in ['exists','percell'] ) else "not(0 "
     if type=="percellcost":
@@ -137,7 +142,7 @@ def decode_conditions(conditions):
                     #Non-vectorial home made functions
                     exists_with_indices[j] = exists_with_indices[j].replace('countcells', 's.count')
                     logging.debug('countcells parsed value before=' + str(exists_with_indices[j]))
-                    if len(re.findall(r'(\(\d+\))', exists[j], re.M | re.I)) == 0:
+                    if len(re.findall(r'(\(\d+\))', exists[j], re.M | re.I)) == len(re.findall(r'(count)', exists[j], re.M | re.I)):
                         exists_with_indices[j], exists_with_indices_vec[j] = generate_quantifier_vector(exists_with_indices[j], "count")
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
                     logging.debug('countcells parsed value after=' + str(conditions[i]))
