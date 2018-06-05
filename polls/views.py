@@ -156,7 +156,7 @@ def decode_conditions(conditions):
                             new_factor, exists_with_indices_vec[j] = generate_quantifier_vector(
                                 factor, "count")
                             exists_with_indices[j] = exists_with_indices[j].replace(factor,new_factor)
-                        exists_with_indices[j] = exists_with_indices[j]+exp_after_paranth
+                        # exists_with_indices[j] = exists_with_indices[j]+exp_after_paranth
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
                     logging.debug('countcells parsed value after=' + str(conditions[i]))
                 elif quantifier=='cell':

@@ -43,6 +43,7 @@ def decode_conditions(conditions):
         conditions[i] = conditions[i].replace('("s")', '(s)')
         conditions[i] = conditions[i].replace('("r")', '(r)')
         for quantifier in ['exists', 'foreach','percell','countcells','increasing','decreasing','percellcost','cell']:
+            logging.debug("decode_conditions: quantifier = "+str(quantifier)+ "; conditions = "+str(conditions))
             exists = re.findall(r'\"(' + quantifier + '\(.*?\))\"', conditions[i], re.M | re.I)
             if quantifier == 'countcells':
                 exists = re.findall(r'(countcells\(.*?\)[<>=][<>=]*\d+)', conditions[i], re.M | re.I)
@@ -70,7 +71,7 @@ def decode_conditions(conditions):
                             new_factor, exists_with_indices_vec[j] = generate_quantifier_vector(
                                 factor, "count")
                             exists_with_indices[j] = exists_with_indices[j].replace(factor,new_factor)
-                        exists_with_indices[j] = exists_with_indices[j]+exp_after_paranth
+                        # exists_with_indices[j] = exists_with_indices[j]+exp_after_paranth
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
                     logging.debug('countcells parsed value after=' + str(conditions[i]))
                 elif quantifier=='cell':
@@ -104,6 +105,7 @@ def decode_conditions(conditions):
                 # print "after conditions[i]="+str( conditions[i])
     return conditions
 
+
 def exclude_self_index_from_cond(home_made_func):
     '''Prevent the case of s[i]>s[1] being checked for s[1]. i.e. s[1]>s[1]'''
     indices = re.findall(r'\[\w+\]', home_made_func, re.M | re.I)
@@ -125,5 +127,5 @@ def exclude_self_index_from_cond(home_made_func):
         home_made_func = home_made_func.replace(cond,new_cond)
     return home_made_func
 # countcells = ['("1" if "countcells(i,s_i>r_i)+countcells(i,s_i>5)>=2" else ("2" if "countcells(0)+countcells(0)=1" else "3"))']
-countcells = ['s.count(i,s[i]>4/2)==5']
+countcells = ['(0 if "countcells(i,s_i>r_i)=5" else 9)', '("percellcost(i,-s_i)" if True else 0)', '(12 if "countcells(i,s_i>r_i)=2" else 0)']
 print(decode_conditions(countcells))
