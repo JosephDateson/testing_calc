@@ -50,8 +50,6 @@ def not_strictly_decreasing(L):
 
 def encode_conditions(conditions):
     # Replaces proprietary expressions with strings in order to parse excel expressions
-    logging.debug(
-        encode_conditions.__name__ + ":before " + encode_conditions.__name__ + ":" + "conds=" + str(conditions))
     for i in range(len(conditions)):
         conditions[i] = conditions[i].replace("(s)", '("s")')
         conditions[i] = conditions[i].replace("(r)", '("r")')
@@ -80,8 +78,6 @@ def encode_conditions(conditions):
         for j in range(len(cell)):
             conditions[i] = conditions[i].replace(cell[j], '\"' + cell[j] + '\"')
         sum = re.findall(r'(SUM\(.*?\))', conditions[i], re.M | re.I)
-    logging.debug(
-        encode_conditions.__name__ + ":after " + encode_conditions.__name__ + ":" + "conds=" + str(conditions))
     return conditions
 
 def generate_quantifier_vector(quantifier, type='exists'):
@@ -90,7 +86,6 @@ def generate_quantifier_vector(quantifier, type='exists'):
     exp_in_paranth = re.findall(r'' + type + '\((.*?\))\)', quantifier, re.M | re.I)
     digits = re.findall(r'\((\d+)\)', quantifier, re.M | re.I)
     if exp_in_paranth == []:
-        # print "empty"
         exp_in_paranth = re.findall(r'' + type + '\((.*?)\)', quantifier, re.M | re.I)
     if len(exp_in_paranth) == 0:
         return quantifier,quantifier
@@ -128,7 +123,6 @@ def decode_conditions(conditions):
         conditions[i] = conditions[i].replace('("s")', '(s)')
         conditions[i] = conditions[i].replace('("r")', '(r)')
         for quantifier in ['exists', 'foreach','percell','countcells','increasing','decreasing','percellcost','cell']:
-            logging.debug("decode_conditions: quantifier = "+str(quantifier)+ "; conditions = "+str(conditions))
             exists = re.findall(r'\"(' + quantifier + '\(.*?\))\"', conditions[i], re.M | re.I)
             if quantifier == 'countcells':
                 exists = re.findall(r'(countcells\(.*?\)[<>=][<>=]*\d+)', conditions[i], re.M | re.I)
@@ -139,7 +133,6 @@ def decode_conditions(conditions):
                 for k in range(len(entries)):
                     exists_with_indices[j] = exists_with_indices[j].replace(entries[k],
                                                                             (entries[k].replace("_", "[") + "]"))
-
                 if not (">" in exists_with_indices[j]) and not ("<" in exists_with_indices[j]):
                     exists_with_indices[j] = exists_with_indices[j].replace("=", "==")
                 exists_with_indices[j]= exclude_self_index_from_cond(exists_with_indices[j])
@@ -148,17 +141,13 @@ def decode_conditions(conditions):
                         exists_with_indices[j] = exists_with_indices[j].replace(equal, equal+"=")
                     #Non-vectorial home made functions
                     exists_with_indices[j] = exists_with_indices[j].replace('countcells', 's.count')
-                    logging.debug('countcells parsed value before=' + str(exists_with_indices[j]))
                     if len(re.findall(r'(\(\d+\))', exists_with_indices[j], re.M | re.I)) != len(re.findall(r'(count)', exists_with_indices[j], re.M | re.I)):
-                        exp_after_paranth = exists_with_indices[j].split(")")[len(exists_with_indices[j].split(")")) - 1]
                         all_factors = re.findall(r"([^\*|\/|\+|\-\**]+)",exists_with_indices[j])
                         for factor in all_factors:
                             new_factor, exists_with_indices_vec[j] = generate_quantifier_vector(
                                 factor, "count")
                             exists_with_indices[j] = exists_with_indices[j].replace(factor,new_factor)
-                        # exists_with_indices[j] = exists_with_indices[j]+exp_after_paranth
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
-                    logging.debug('countcells parsed value after=' + str(conditions[i]))
                 elif quantifier=='cell':
                     exists_with_indices[j] = exists_with_indices[j].replace('cell', '')
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
@@ -168,26 +157,15 @@ def decode_conditions(conditions):
                 else:
                     exists_with_indices[j],exists_with_indices_vec[j] = generate_quantifier_vector(exists_with_indices[j], quantifier)
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
-                    if quantifier == 'countcells':
-                        logging.debug('countcells parsed value after=' + str(conditions[i]))
                     if quantifier=='percell':
-                        # print "percell"
-                        # print "before conditions[i]="+str( conditions[i])
-                        logging.debug('percell parsed value before=' + str(conditions[i]))
                         full_cond_percell = ' if ' + exists_with_indices[j]
                         conditions[i] = re.sub(r'(\d+)' + re.escape(full_cond_percell),
                                      r'\1*' + 'sum('+exists_with_indices_vec[j] +')'+full_cond_percell, conditions[i])
-                        logging.debug('percell parsed value after='+str(conditions[i]))
                     elif quantifier=='percellcost':
-                        # print "percellcost"
-                        # print "before conditions[i]=" + str(conditions[i])
-                        # print "before exists_with_indices[j]="+str(exists_with_indices[j])
                         full_cond_percell = exists_with_indices[j]
                         conditions[i] = re.sub(r'' + re.escape(full_cond_percell),
                                                r'sum(' + exists_with_indices_vec[j] + ')',
                                                conditions[i])
-
-                # print "after conditions[i]="+str( conditions[i])
     return conditions
 
 def exclude_self_index_from_cond(home_made_func):
@@ -203,11 +181,9 @@ def exclude_self_index_from_cond(home_made_func):
         if index[1] in digits:
             has_digit = True
     if has_alpha and has_digit:
-        # print "in exclude_self_index_from_cond, with="+str(home_made_func)
         cond = re.findall(r',.*\)', home_made_func, re.M | re.I)
         cond = cond[0][1:-1]
         new_cond = "("+cond+" or "+str(indices[0])+"=="+str(indices[1])+")"
-        # print "cond="+str(home_made_func.replace(cond,new_cond))
         home_made_func = home_made_func.replace(cond,new_cond)
     return home_made_func
 
@@ -215,20 +191,15 @@ def parse_conditions(conds):
     conds = encode_conditions(conds)
     python_inputs = []
     for i in conds:
-        # print "**************************************************"
-        # print "Formula: ", i
         e = shunting_yard(i);
         G, root = build_ast(e)
         python_inputs += [root.emit(G, context=None)]
-        # print "Python code: ", root.emit(G, context=None)
-        # print "**************************************************"
     return decode_conditions(python_inputs)
 
 def classify_strategies_to_dimensions(strategies, dimensions_matrix, dimensions_rows_conds,
                                       dimensions_columns_conds):
     row = ""
     col = ""
-    # print "matrix="+str(dimensions_matrix)
     for t in strategies:
         s = tuple(t)
         exec "row =" + dimensions_rows_conds[0]
@@ -238,11 +209,9 @@ def classify_strategies_to_dimensions(strategies, dimensions_matrix, dimensions_
 
 def create_dimensions_matrix(dimensions_rows_categories_names, dimensions_columns_categories_names):
     dimensions_matrix = {row_name: dict() for row_name in dimensions_rows_categories_names}
-    # print "create_dimensions_matrix" + str(dimensions_matrix)
     for row_name in dimensions_matrix:
         for col_name in dimensions_columns_categories_names:
             dimensions_matrix[row_name][col_name] = dict()
-    # print "create_dimensions_matrix" + str(dimensions_matrix)
     return dimensions_matrix
 
 def calc_payments(dimensions_matrix, payment_conds):
@@ -274,8 +243,6 @@ def calc_payments(dimensions_matrix, payment_conds):
                             in dimensions_matrix[row][col][strategy][row2][col2]]
                         uni_payment = sum([(1 / float(cell_size)) * payment for payment in pyments_in_cell])
                         dimensions_matrix[row][col][strategy][row2][col2]["uniform_payment"] = uni_payment
-                        if strategy == (1, 6, 0):
-                            print str(row2) + "," + str(col2)  + "=" + str(uni_payment)
     # dimensions_matrix_copy = dict(dimensions_matrix)
     # for row in dimensions_matrix:
     #     for col in dimensions_matrix[row]:
@@ -291,7 +258,6 @@ def calc_payments(dimensions_matrix, payment_conds):
             best_payment = -1000000
             best_response=tuple()
             for strategy in dimensions_matrix[row][col]:
-                # print "strategy="+str(strategy)
                 dimensions_matrix[row][col][strategy]["is_best_response"] = False
                 if dimensions_matrix[row][col][strategy][row][col]["uniform_payment"]>=best_payment:
                     best_response = strategy
@@ -411,7 +377,6 @@ def calc_Global_eq(dimensions_matrix):
             for strategy in dimensions_matrix[row][col]:
                 if strategy != "best_response":
                     if is_Global_eq:
-                        # print "is_Global="+str(strategy)
                         dimensions_matrix[row][col][strategy]["is_Global_eq"] = True
                         dimensions_matrix[row][col][strategy]["lost_to_Global_eq"] = lost_to
                     else:
@@ -421,40 +386,18 @@ def calc_Global_eq(dimensions_matrix):
 
 def full_calc(strategies_vector, dimensions_rows_conds, dimensions_columns_conds, dimensions_rows_categories_names,
               dimensions_columns_categories_names, dimensions_ordered_row, dimensions_ordered_col, payment_conds):
-    # import logging
-    # logger = logging.getLogger('testlogger')
-    # print('*****************************This is a simple log message')
-    # print "dimensions_rows_conds="+str(dimensions_rows_conds)
 
     dimensions_rows_conds = parse_conditions(dimensions_rows_conds)
-    # print "row_conds=" + str(dimensions_rows_conds)
     dimensions_columns_conds = parse_conditions(dimensions_columns_conds)
-    # print "columns_conds=" + str(dimensions_columns_conds)
     payment_conds = parse_conditions(payment_conds)
-    # print "payment_conds="+str(payment_conds)
-    # print "dimensions_rows_categories_names"+str(dimensions_rows_categories_names)
     dimensions_matrix = create_dimensions_matrix(dimensions_rows_categories_names,
                                                  dimensions_columns_categories_names)
-    # print str(dimensions_matrix)
     dimensions_matrix = classify_strategies_to_dimensions(strategies_vector, dimensions_matrix,
                                                           dimensions_rows_conds,
                                                           dimensions_columns_conds)
-    # print "dimensions_matrix="+str(dimensions_matrix)
     dimensions_matrix = calc_payments(dimensions_matrix, payment_conds)
-    # print "\n calc global eq"
-    # print "*************************************"
     dimensions_matrix = calc_MD_eq(dimensions_matrix, dimensions_ordered_row, dimensions_ordered_col)
     dimensions_matrix = calc_Global_eq(dimensions_matrix)
-    # for row in dimensions_matrix:
-    #     for col in dimensions_matrix[row]:
-    #         for strategy in dimensions_matrix[row][col]:
-    #             print str(row) + "," + str(col) + ":" + str(dimensions_matrix[row][col][strategy]["is_Global_eq"])
-    # print "\n calc MD eq"
-    # print "*************************************"
-    # for row in dimensions_matrix:
-    #     for col in dimensions_matrix[row]:
-    #         for strategy in dimensions_matrix[row][col]:
-    #             print str(row) + "," + str(col) + ":" + str(dimensions_matrix[row][col][strategy]["is_MD_eq"])
     return dimensions_matrix
 
 
@@ -470,7 +413,6 @@ def create_html_table(dimensions_matrix,dimensions_rows_categories_names,dimensi
     def create_strategy_table(strategy):
         table_content = '<table id="scores" class="table table-bordered fixed"><thead><tr><th class="col-xs-3 ">Cells\' best strategy\'s score <br> against<i><b id="chosen_cell">chosen cell</b></i></th>'
         for col3 in dimensions_columns_categories_names:
-            # print "in col3:"+str(col3)
             table_content += "<th>" + col3 + "</th>"
         table_content += "</tr></thead>"
         for row3 in dimensions_rows_categories_names:
@@ -490,7 +432,6 @@ def create_html_table(dimensions_matrix,dimensions_rows_categories_names,dimensi
                 table_content += "<td class='formatted_square_hide'>Best Response:" + str(best_response_printable_name) + "<br> Score=" + str(strategies) + "</td>"
             table_content += "</tr>"
         return table_content
-    # print "html\n\n"
     html_string = '<table class="table table-bordered fixed"><thead><tr><th class="col-xs-3">Partitions of <br>strategies into cells<br><a id="show_hide_strategies" class="on_green" onclick="return myFunction(1);">(click to show all strategies)</a> </th>'
     for col in dimensions_columns_categories_names:
         html_string += "<th>"+col+"</th>"
@@ -550,8 +491,6 @@ def create_html_table(dimensions_matrix,dimensions_rows_categories_names,dimensi
                     html_string += generate_script_for_strategy(dimensions_matrix,row,col,strategy,dimensions_rows_categories_names,dimensions_columns_categories_names,i,j)
 
     def create_csv():
-        # print "the array="+str(pd.read_html(top_table))
-        # print "TABLES="+str(TABLES)
         with open(r'tmp.csv', 'w') as f:
             f.write("This is an exact copy of the top table in the result window\n")
             for df in (pd.read_html(top_table)):
@@ -561,12 +500,9 @@ def create_html_table(dimensions_matrix,dimensions_rows_categories_names,dimensi
             for (strategy,table) in TABLES:
                 for df in (pd.read_html(table)):
                     f.write("\n\n\"" + str(strategy) + "\"\n")
-                    # print df
                     df.to_csv(f, index=False,header=False)
         with open(r'tmp.csv', 'r') as f:
-            # print "\nfinal csv:\n"
             csv_content = f.read().replace('\n','\\n').replace('"','\\"').replace("'","\\\\\\\'")
-            # print str(csv_content)
         return csv_content
     html_string=HTML_HEADER_TEXT+html_string;
     html_string += HTML_END_TEXT.replace("<csv_content_placeholder>",create_csv())
@@ -824,9 +760,6 @@ def generate_all_strategies_product(n,full_set):
     # Generate all tuples of size n from the set full_set
     full_set_list = []
     full_set_str = "[" + full_set + "]"
-    # full_
-    #
-    # set_str = full_set.replace("{","[").replace("}","]")
     exec "full_set_list="+full_set_str
     return list(itertools.product(full_set_list,repeat=n))
 
@@ -840,30 +773,20 @@ def is_satisfying_constraints(strategy,constraints):
     #Returns 0 if a given strategy doesn't satisfy all constraints, and 1 otherwise
     s = tuple(strategy)
     satisfied = False
-    # if DEBUG:
-    #     print "strategy=" + str(s)
     for constraint in constraints:
-        # if DEBUG:
-        #     print "constraint="+constraint+"\n"
         exec "satisfied="+constraint
         if not(satisfied):
             return False
     return True
 def filter_strategies_by_constraints(strategies, constraints):
     filtered_strategies = []
-    # print "strategies="+str(strategies)
-    # print "constraints="+str(constraints)
     for strategy in strategies:
         if is_satisfying_constraints(strategy,constraints):
             filtered_strategies+=[strategy]
     return filtered_strategies
 def strategies_filter(strategies,constraints):
-    # print "\n\nstrategies_sim"
-    # print "strategies="+str(strategies)
-    # print "constraints="+str(constraints)
     constraints = parse_conditions(constraints)
     filtered_strategies = filter_strategies_by_constraints(strategies, constraints)
-    # print "filtered_strategies="+str(filtered_strategies)
     return filtered_strategies
 @csrf_exempt
 def index(request):
@@ -886,7 +809,6 @@ def index(request):
             dimensions_rows_categories_names = []
             dimensions_columns_categories_names = []
             all_strategies_generated = []
-
 
             def replace_variables_definitions(value_with_variable,variables_definitions):
                 for variables_definition in variables_definitions:
@@ -911,42 +833,28 @@ def index(request):
                         variables_values[datum.split("_")[2]] = str(form.cleaned_data[datum])
             for index in variables_names:
                 variables_definitions[variables_names[index]] = variables_values[index]
-
             conditions = []
             for datum in form.cleaned_data:
                 if ("dimension" in datum) and ("row" in datum) and ("cond" in datum):
-                    # print "condition="+str(form.cleaned_data[datum])
                     if str(form.cleaned_data[datum]) == 'else':
                         last = str("\""+form.cleaned_data[datum.replace('cond', 'name').replace('if', 'category')]+"\"")
-                        # print "last="+str(last)
-
-                        # print "last="+str(last)
                     elif str(form.cleaned_data[datum]) != '':
                         conditions += [str("IF(" + form.cleaned_data[datum] + ",\"" + form.cleaned_data[
                                 datum.replace('cond', 'name').replace('if', 'category')] + "\",<next_condition>)")]
-            # print "conditions = "+str(conditions)
             for i in range(1,len(conditions)):
                 conditions[i] = conditions[i].replace("<next_condition>",conditions[i-1])
             dimensions_rows_conds_dict['dimensions_row_if_cond_1'] = "="+conditions[len(conditions)-1].replace("<next_condition>", last)
             strategies_symbols = re.findall("[-,=><(](s[0-9a-z]+?|r[0-9a-z]+?)", dimensions_rows_conds_dict['dimensions_row_if_cond_1'])
-            # print "strategies_symbols = "+str(strategies_symbols)
             for symbol in strategies_symbols:
-                # print "symbol row="+str(symbol)
-                # print "orig="+str(dimensions_rows_conds_dict['dimensions_row_if_cond_1'])
                 dimensions_rows_conds_dict['dimensions_row_if_cond_1'] = dimensions_rows_conds_dict['dimensions_row_if_cond_1'].replace(symbol,symbol[0]+"_"+symbol[1:])
-                # print "after="+str(dimensions_rows_conds_dict['dimensions_row_if_cond_1'])
             conditions = []
             for datum in form.cleaned_data:
                 if ("dimension" in datum) and ("column" in datum) and ("cond" in datum):
-                    # print "condition="+str(form.cleaned_data[datum])
                     if str(form.cleaned_data[datum]) == 'else':
-                        last = str(
-                            "\"" + form.cleaned_data[datum.replace('cond', 'name').replace('if', 'category')] + "\"")
-                        # print "last="+str(last)
+                        last = str("\"" + form.cleaned_data[datum.replace('cond', 'name').replace('if', 'category')] + "\"")
                     elif str(form.cleaned_data[datum]) != '':
                         conditions += [str("IF(" + form.cleaned_data[datum] + ",\"" + form.cleaned_data[
                             datum.replace('cond', 'name').replace('if', 'category')] + "\",<next_condition>)")]
-            # print "conditions = "+str(conditions)
             for i in range(1, len(conditions)):
                 conditions[i] = conditions[i].replace("<next_condition>", conditions[i - 1])
             dimensions_columns_conds_dict['dimensions_column_if_cond_1'] = "=" + conditions[len(conditions) - 1].replace("<next_condition>", last)
@@ -968,11 +876,9 @@ def index(request):
             for cond in payment_conds:
                 strategies_symbols = re.findall("[-,=><(](s[0-9a-z]+?|r[0-9a-z]+?)",cond)
                 for symbol in strategies_symbols:
-                    # print "symbol paments=" + str(symbol)
                     cond = cond.replace(symbol, symbol[0] + "_" + symbol[1:])
                 payment_conds_temp += [cond]
             payment_conds = payment_conds_temp
-            logging.debug("payment_conds=" + str(payment_conds))
             payment_conds = replace_variables_definitions_in_condition(payment_conds,variables_definitions)
 
             for cond in dimensions_rows_conds_dict:
@@ -983,12 +889,9 @@ def index(request):
             for cond in dimensions_rows_conds:
                 strategies_symbols = re.findall("[-,=><(](s[0-9a-z]+?|r[0-9a-z]+?)", cond)
                 for symbol in strategies_symbols:
-                    # print "symbol rows=" + str(symbol)+" cond ="+str(cond)
                     cond = cond.replace(symbol, symbol[0] + "_" + symbol[1:])
-                    # print "cond after="+str(cond)
                 dimensions_rows_conds_temp += [cond]
             dimensions_rows_conds = dimensions_rows_conds_temp
-            logging.debug("dimensions_rows_conds="+str(dimensions_rows_conds))
             dimensions_rows_conds = replace_variables_definitions_in_condition(dimensions_rows_conds, variables_definitions)
 
             for cond in dimensions_columns_conds_dict:
@@ -1002,7 +905,6 @@ def index(request):
                     cond = cond.replace(symbol, symbol[0] + "_" + symbol[1:])
                 dimensions_columns_conds_temp += [cond]
             dimensions_columns_conds = dimensions_columns_conds_temp
-            logging.debug("dimensions_columns_conds=" + str(dimensions_columns_conds))
             dimensions_columns_conds = replace_variables_definitions_in_condition(dimensions_columns_conds,
                                                                                variables_definitions)
             strategies_full_set = ""
@@ -1034,12 +936,10 @@ def index(request):
                             strategies_vectors+= [[eval(str(strategies_vectors_str[datum]))]]
                 strategies_vectors = [list(strategy[0]) if type(strategy[0]) == tuple else strategy for strategy in
                                       strategies_vectors]
-            logging.debug("strategies_vectors=" + str(strategies_vectors))
             for i in range(1,11):
                 field_name = "dimensions_row_category_name_"+str(i)
                 if str(form.cleaned_data[field_name]) != '':
                     dimensions_rows_categories_names+=[str(form.cleaned_data[field_name])]
-            logging.debug("dimensions_rows_categories_names=" + str(dimensions_rows_categories_names))
             dimensions_rows_categories_names = replace_variables_definitions_in_condition(dimensions_rows_categories_names,
                                                                                variables_definitions)
 
@@ -1047,47 +947,27 @@ def index(request):
                 field_name = "dimensions_column_category_name_" + str(i)
                 if str(form.cleaned_data[field_name]) != '':
                     dimensions_columns_categories_names += [str(form.cleaned_data[field_name])]
-            logging.debug("dimensions_columns_categories_names=" + str(dimensions_columns_categories_names))
             dimensions_columns_categories_names = replace_variables_definitions_in_condition(dimensions_columns_categories_names,
                                                                                variables_definitions)
             strategies_vector_length = 0
             strategies_full_set = ""
-
             for datum in form.cleaned_data:
                 if ("strategies_vector_length" in datum):
                     if str(form.cleaned_data[datum]) != '':
-                        logging.debug("replace_variables_definitions=" + str(replace_variables_definitions(form.cleaned_data[datum], variables_definitions)))
                         strategies_vector_length = int(replace_variables_definitions(form.cleaned_data[datum], variables_definitions))
-                        logging.debug("strategies_vector_length=" + str(strategies_vector_length))
                 if ("strategies_full_set" in datum):
                     if str(form.cleaned_data[datum]) != '':
                         strategies_full_set = replace_variables_definitions(form.cleaned_data[datum], variables_definitions)
             if (strategies_vector_length != 0):
                 if strategies_full_set == "":
                     strategies_full_set = replace_variables_definitions(strategies_vectors, variables_definitions)
-
-                logging.debug("strategies_full_set=" + str(strategies_full_set))
-
                 if "ignore permutations" in strategies_constraints:
                     del strategies_constraints["ignore permutations"]
-                    all_strategies_generated = generate_all_strategies_combinations(strategies_vector_length,
-                                                                                    strategies_full_set)
+                    all_strategies_generated = generate_all_strategies_combinations(strategies_vector_length, strategies_full_set)
                 else:
-                    all_strategies_generated = generate_all_strategies_product(strategies_vector_length,
-                                                                                    strategies_full_set)
-
-
+                    all_strategies_generated = generate_all_strategies_product(strategies_vector_length, strategies_full_set)
                 strategies_constraints=convert_to_excel_conds(strategies_constraints)
                 strategies_vectors = strategies_filter(all_strategies_generated,strategies_constraints)
-            # logging.debug("strategies_vectors="+str(strategies_vectors))
-            # logging.debug(str(dimensions_rows_conds))
-            # logging.debug("strategies all")
-            # logging.debug("all atrategies=" + str(all_strategies_generated))
-            # if DEBUG:
-            #     logging.debug("len(all_strategies_generated)=" + str(len(all_strategies_generated)))
-            # logging.debug("payment_conds="+str(payment_conds))
-            # logging.debug("dimensions_columns_categories_names="+str(dimensions_columns_categories_names))
-            # logging.debug("dimensions_rows_categories_names="+str(dimensions_rows_categories_names))
             dimensions_matrix=full_calc(strategies_vectors, dimensions_rows_conds, dimensions_columns_conds,dimensions_rows_categories_names,dimensions_columns_categories_names,dimensions_rows_categories_names,dimensions_columns_categories_names,payment_conds)
             return HttpResponse(create_html_table(dimensions_matrix,dimensions_rows_categories_names,dimensions_columns_categories_names))
         else:
