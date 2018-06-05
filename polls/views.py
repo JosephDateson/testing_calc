@@ -92,6 +92,8 @@ def generate_quantifier_vector(quantifier, type='exists'):
     if exp_in_paranth == []:
         # print "empty"
         exp_in_paranth = re.findall(r'' + type + '\((.*?)\)', quantifier, re.M | re.I)
+    if len(exp_in_paranth) == 0:
+        return quantifier,quantifier
     exp_in_paranth = exp_in_paranth[0].split(",")
     for digit in digits:
         if digit in exp_in_paranth:
