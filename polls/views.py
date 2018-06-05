@@ -148,6 +148,8 @@ def decode_conditions(conditions):
                 else:
                     exists_with_indices[j],exists_with_indices_vec[j] = generate_quantifier_vector(exists_with_indices[j], quantifier)
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
+                    if quantifier == 'countcells':
+                        logging.debug('countcells parsed value after=' + str(conditions[i]))
                     if quantifier=='percell':
                         # print "percell"
                         # print "before conditions[i]="+str( conditions[i])
