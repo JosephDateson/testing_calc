@@ -968,6 +968,7 @@ def index(request):
                 dimensions_columns_conds_temp += [cond]
             dimensions_columns_conds = dimensions_columns_conds_temp
 
+            strategies_full_set = ""
             if form.cleaned_data["strategies_vector_single"] != '':
                 tuples = re.findall("\(.+?\)", str(form.cleaned_data["strategies_vector_single"]))
                 new_single_vector = str(form.cleaned_data["strategies_vector_single"])
