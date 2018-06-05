@@ -115,7 +115,6 @@ def generate_quantifier_vector(quantifier, type='exists'):
 
 def decode_conditions(conditions):
     # Convert proprietary functions in already excel parsed conditions into pyton syntax
-    logging.debug(decode_conditions.__name__ + ":before " + decode_conditions.__name__ + ":" + "conds=" + str(conditions))
     for i in range(len(conditions)):
         conditions[i] = conditions[i].replace('("s")', '(s)')
         conditions[i] = conditions[i].replace('("r")', '(r)')
@@ -165,7 +164,6 @@ def decode_conditions(conditions):
                                                conditions[i])
 
                 # print "after conditions[i]="+str( conditions[i])
-    logging.debug(decode_conditions.__name__ + ":after  " + decode_conditions.__name__ + ":" + "conds=" + str(conditions))
     return conditions
 
 def exclude_self_index_from_cond(home_made_func):
@@ -870,11 +868,14 @@ def index(request):
                     value_with_variable = value_with_variable.replace(variables_definition, variables_definitions[variables_definition])
                 return value_with_variable
 
-            def replace_variables_definitions_in_condition(old_str, variables_definitions):
-                new_str = old_str
-                for variables_definition in variables_definitions:
-                    new_str = re.sub(r"\b" + variables_definition + r"\b", variables_definitions[variables_definition],
-                                     new_str)
+            def replace_variables_definitions_in_condition(old_str_list, variables_definitions):
+                for i in range(len(old_str_list)):
+                    new_str = old_str_list[i]
+                    for variables_definition in variables_definitions:
+                        new_str = re.sub(r"\b" + variables_definition + r"\b", variables_definitions[variables_definition],
+                                         new_str)
+                    old_str_list[i] = new_str
+                return old_str_list
 
             for datum in form.cleaned_data:
                 if ("var_name" in datum):
@@ -947,6 +948,7 @@ def index(request):
                 payment_conds_temp += [cond]
             payment_conds = payment_conds_temp
             logging.debug("payment_conds=" + str(payment_conds))
+            payment_conds = replace_variables_definitions_in_condition(payment_conds,variables_definitions)
 
             for cond in dimensions_rows_conds_dict:
                 if dimensions_rows_conds_dict[cond]!='':
