@@ -994,7 +994,8 @@ def index(request):
                         final_single_vector += [item]
                 final_single_vector += tuples
                 for strategy in final_single_vector:
-                    strategies_vectors += [[eval(str(strategy))]]
+                    strategy_with_variable = replace_variables_definitions(strategy, variables_definitions)
+                    strategies_vectors += [[eval(str(strategy_with_variable))]]
                 strategies_vectors = [list(strategy[0]) if type(strategy[0]) == tuple else strategy for strategy in
                                       strategies_vectors]
             elif form.cleaned_data["strategies_upper_bound"]!='' and form.cleaned_data["strategies_lower_bound"]!='':
@@ -1054,9 +1055,6 @@ def index(request):
 
                 strategies_constraints=convert_to_excel_conds(strategies_constraints)
                 strategies_vectors = strategies_filter(all_strategies_generated,strategies_constraints)
-            logging.debug("strategies_vectors in the end=" + str(strategies_vectors))
-            strategies_vectors = replace_variables_definitions(strategies_vectors, variables_definitions)
-
             # logging.debug("strategies_vectors="+str(strategies_vectors))
             # logging.debug(str(dimensions_rows_conds))
             # logging.debug("strategies all")
