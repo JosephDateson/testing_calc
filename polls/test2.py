@@ -8,7 +8,7 @@ def generate_quantifier_vector(quantifier, type='exists'):
         # print "empty"
         exp_in_paranth = re.findall(r'' + type + '\((.*?)\)', quantifier, re.M | re.I)
     if len(exp_in_paranth) == 0:
-        return quantifier, quantifier
+        return quantifier,quantifier
     exp_in_paranth = exp_in_paranth[0].split(",")
     for digit in digits:
         if digit in exp_in_paranth:
@@ -30,7 +30,10 @@ def generate_quantifier_vector(quantifier, type='exists'):
     condition_vec_exp += "]"
     if type in ['foreach',"count"] :
         condition_vec_exp += ")"
-
+    if type == "count":
+        condition_vec_exp += exp_after_paranth
+        for equal in re.findall(r'([^<>=]=)[^<>=]', condition_vec_exp, re.M | re.I):
+            condition_vec_exp = condition_vec_exp.replace(equal,"==")
     condition_vec = condition_vec_exp[condition_vec_exp.index('['):]
     return (condition_vec_exp,condition_vec)
 
@@ -42,7 +45,7 @@ def decode_conditions(conditions):
         for quantifier in ['exists', 'foreach','percell','countcells','increasing','decreasing','percellcost','cell']:
             exists = re.findall(r'\"(' + quantifier + '\(.*?\))\"', conditions[i], re.M | re.I)
             if quantifier == 'countcells':
-                exists = re.findall(r'(countcells\(.*?\)[<>]*=\d+)', conditions[i], re.M | re.I)
+                exists = re.findall(r'(countcells\(.*?\)[<>=][<>=]*\d+)', conditions[i], re.M | re.I)
             for j in range(len(exists)):
                 exists_with_indices = list(exists)
                 exists_with_indices_vec=list(exists)
@@ -121,5 +124,6 @@ def exclude_self_index_from_cond(home_made_func):
         # print "cond="+str(home_made_func.replace(cond,new_cond))
         home_made_func = home_made_func.replace(cond,new_cond)
     return home_made_func
-countcells = ['("1" if "countcells(i,s_i>r_i)+countcells(i,s_i>5)>=2" else ("2" if "countcells(0)+countcells(0)=1" else "3"))']
+# countcells = ['("1" if "countcells(i,s_i>r_i)+countcells(i,s_i>5)>=2" else ("2" if "countcells(0)+countcells(0)=1" else "3"))']
+countcells = ['s.count(i,s[i]>4/2)==5']
 print(decode_conditions(countcells))

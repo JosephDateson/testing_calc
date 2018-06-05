@@ -128,6 +128,7 @@ def decode_conditions(conditions):
         conditions[i] = conditions[i].replace('("s")', '(s)')
         conditions[i] = conditions[i].replace('("r")', '(r)')
         for quantifier in ['exists', 'foreach','percell','countcells','increasing','decreasing','percellcost','cell']:
+            logging.debug("decode_conditions: quantifier = "+str(quantifier)+ "; conditions = "+str(conditions))
             exists = re.findall(r'\"(' + quantifier + '\(.*?\))\"', conditions[i], re.M | re.I)
             if quantifier == 'countcells':
                 exists = re.findall(r'(countcells\(.*?\)[<>=][<>=]*\d+)', conditions[i], re.M | re.I)
