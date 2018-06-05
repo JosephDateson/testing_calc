@@ -964,6 +964,7 @@ def index(request):
                 dimensions_rows_conds_temp += [cond]
             dimensions_rows_conds = dimensions_rows_conds_temp
             logging.debug("dimensions_rows_conds="+str(dimensions_rows_conds))
+            dimensions_rows_conds = replace_variables_definitions_in_condition(dimensions_rows_conds, variables_definitions)
 
             for cond in dimensions_columns_conds_dict:
                 if dimensions_columns_conds_dict[cond]!='':
@@ -977,6 +978,8 @@ def index(request):
                 dimensions_columns_conds_temp += [cond]
             dimensions_columns_conds = dimensions_columns_conds_temp
             logging.debug("dimensions_columns_conds=" + str(dimensions_columns_conds))
+            dimensions_columns_conds = replace_variables_definitions_in_condition(dimensions_columns_conds,
+                                                                               variables_definitions)
             strategies_full_set = ""
             if form.cleaned_data["strategies_vector_single"] != '':
                 tuples = re.findall("\(.+?\)", str(form.cleaned_data["strategies_vector_single"]))
@@ -1011,12 +1014,16 @@ def index(request):
                 if str(form.cleaned_data[field_name]) != '':
                     dimensions_rows_categories_names+=[str(form.cleaned_data[field_name])]
             logging.debug("dimensions_rows_categories_names=" + str(dimensions_rows_categories_names))
+            dimensions_rows_categories_names = replace_variables_definitions_in_condition(dimensions_rows_categories_names,
+                                                                               variables_definitions)
 
             for i in range(1, 11):
                 field_name = "dimensions_column_category_name_" + str(i)
                 if str(form.cleaned_data[field_name]) != '':
                     dimensions_columns_categories_names += [str(form.cleaned_data[field_name])]
             logging.debug("dimensions_columns_categories_names=" + str(dimensions_columns_categories_names))
+            dimensions_columns_categories_names = replace_variables_definitions_in_condition(dimensions_columns_categories_names,
+                                                                               variables_definitions)
             strategies_vector_length = 0
             strategies_full_set = ""
 
