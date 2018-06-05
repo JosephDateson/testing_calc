@@ -50,6 +50,8 @@ def not_strictly_decreasing(L):
 
 def encode_conditions(conditions):
     # Replaces proprietary expressions with strings in order to parse excel expressions
+    logging.debug(
+        encode_conditions.__name__ + ":before " + encode_conditions.__name__ + ":" + "conds=" + str(conditions))
     for i in range(len(conditions)):
         conditions[i] = conditions[i].replace("(s)", '("s")')
         conditions[i] = conditions[i].replace("(r)", '("r")')
@@ -78,6 +80,8 @@ def encode_conditions(conditions):
         for j in range(len(cell)):
             conditions[i] = conditions[i].replace(cell[j], '\"' + cell[j] + '\"')
         sum = re.findall(r'(SUM\(.*?\))', conditions[i], re.M | re.I)
+    logging.debug(
+        encode_conditions.__name__ + ":after " + encode_conditions.__name__ + ":" + "conds=" + str(conditions))
     return conditions
 
 def generate_quantifier_vector(quantifier, type='exists'):
@@ -105,6 +109,7 @@ def generate_quantifier_vector(quantifier, type='exists'):
     return (condition_vec_exp,condition_vec)
 
 def decode_conditions(conditions):
+    # Convert proprietary functions in already excel parsed conditions into pyton syntax
     logging.debug(decode_conditions.__name__ + ":before " + decode_conditions.__name__ + ":" + "conds=" + str(conditions))
     for i in range(len(conditions)):
         conditions[i] = conditions[i].replace('("s")', '(s)')
