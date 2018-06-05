@@ -98,13 +98,18 @@ def generate_quantifier_vector(quantifier, type='exists'):
     if type=="percellcost":
         condition_vec_exp = "1 " if (type == 'percellcost') else "not(0 "
         condition_vec_exp += "in ["+exp_in_paranth[-1]+" if True else 0 "
+    elif type == "count":
+        exp_after_paranth = quantifier.split(")")[len(quantifier.split(")")) - 1]
+        condition_vec_exp = "sum([1 if " + exp_in_paranth[-1] + " else 0 "
     else:
         condition_vec_exp += "in [1 if " + exp_in_paranth[-1] + " else 0 "
     for i in range(len(exp_in_paranth) - 1):
         condition_vec_exp += "for " + exp_in_paranth[i] + " in range(len(" + vecs[i] + ")) "
     condition_vec_exp += "]"
-    if type == 'foreach':
+    if type in ['foreach',"count"] :
         condition_vec_exp += ")"
+    if type == "count":
+        condition_vec_exp += exp_after_paranth
     condition_vec = condition_vec_exp[condition_vec_exp.index('['):]
     return (condition_vec_exp,condition_vec)
 
@@ -132,7 +137,8 @@ def decode_conditions(conditions):
                 if quantifier == 'countcells':
                     #Non-vectorial home made functions
                     exists_with_indices[j] = exists_with_indices[j].replace('countcells', 's.count')
-
+                    if len(re.findall(r'(\(\d+\))', exists[j], re.M | re.I)) == 0:
+                        exists_with_indices[j], exists_with_indices_vec[j] = generate_quantifier_vector(exists_with_indices[j], "count")
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
                 elif quantifier=='cell':
                     exists_with_indices[j] = exists_with_indices[j].replace('cell', '')
