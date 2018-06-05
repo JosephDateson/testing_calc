@@ -117,7 +117,7 @@ def generate_quantifier_vector(quantifier, type='exists'):
     condition_vec = condition_vec_exp[condition_vec_exp.index('['):]
     return (condition_vec_exp,condition_vec)
 
-def decode_conditions(conditions):
+def decode_conditions(conditions,debug=False):
     # Convert proprietary functions in already excel parsed conditions into pyton syntax
     for i in range(len(conditions)):
         conditions[i] = conditions[i].replace('("s")', '(s)')
@@ -144,25 +144,30 @@ def decode_conditions(conditions):
                 exists_with_indices[j]= exclude_self_index_from_cond(exists_with_indices[j])
 
                 if quantifier == 'countcells':
-                    logging.debug("decode_conditions: Starting to process countcells")
-                    logging.debug("decode_conditions: exists_with_indices[j] = "+str(exists_with_indices[j]))
+                    if debug:
+                        logging.debug("decode_conditions: Starting to process countcells")
+                        logging.debug("decode_conditions: exists_with_indices[j] = "+str(exists_with_indices[j]))
 
                     for equal in re.findall(r'([^<>=]=)[^<>=]', exists_with_indices[j], re.M | re.I):
                         exists_with_indices[j] = exists_with_indices[j].replace(equal, equal+"=")
-                    logging.debug("decode_conditions: Switching = for ==: exists_with_indices[j] = " + str(exists_with_indices[j]))
+                    if debug:
+                        logging.debug("decode_conditions: Switching = for ==: exists_with_indices[j] = " + str(exists_with_indices[j]))
 
                     #Non-vectorial home made functions
                     exists_with_indices[j] = exists_with_indices[j].replace('countcells', 's.count')
-                    logging.debug("decode_conditions: Switching countcells for s.count: exists_with_indices[j] = " + str(exists_with_indices[j]))
+                    if debug:
+                        logging.debug("decode_conditions: Switching countcells for s.count: exists_with_indices[j] = " + str(exists_with_indices[j]))
                     if len(re.findall(r'(\(\d+\))', exists_with_indices[j], re.M | re.I)) != len(re.findall(r'(count)', exists_with_indices[j], re.M | re.I)):
                         all_factors = re.findall(r"([^\*|\/|\+|\-\**]+)",exists_with_indices[j])
                         for factor in all_factors:
                             new_factor, exists_with_indices_vec[j] = generate_quantifier_vector(
                                 factor, "count")
                             exists_with_indices[j] = exists_with_indices[j].replace(factor,new_factor)
-                    logging.debug("decode_conditions: Switch count with list comprehension: exists_with_indices[j] = " + str(exists_with_indices[j]))
+                    if debug:
+                        logging.debug("decode_conditions: Switch count with list comprehension: exists_with_indices[j] = " + str(exists_with_indices[j]))
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
-                    logging.debug("decode_conditions: Final condition result: conditions[i] = " + str(conditions[i]))
+                    if debug:
+                        logging.debug("decode_conditions: Final condition result: conditions[i] = " + str(conditions[i]))
                 elif quantifier=='cell':
                     exists_with_indices[j] = exists_with_indices[j].replace('cell', '')
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
@@ -205,13 +210,16 @@ def exclude_self_index_from_cond(home_made_func):
 def parse_conditions(conds,debug=False):
     conds = encode_conditions(conds)
     if debug:
-        logging.debug("parse_conditions - after encoding: payment_if_cond = " + str(conds))
+        logging.debug("parse_conditions - after encoding: dimensions_columns_conds = " + str(conds))
     python_inputs = []
     for i in conds:
         e = shunting_yard(i);
         G, root = build_ast(e)
         python_inputs += [root.emit(G, context=None)]
-    return decode_conditions(python_inputs)
+    if debug:
+        return decode_conditions(python_inputs,True)
+    else:
+        return decode_conditions(python_inputs)
 
 def classify_strategies_to_dimensions(strategies, dimensions_matrix, dimensions_rows_conds,
                                       dimensions_columns_conds):
