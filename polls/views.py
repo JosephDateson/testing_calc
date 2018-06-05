@@ -187,9 +187,9 @@ def exclude_self_index_from_cond(home_made_func):
         home_made_func = home_made_func.replace(cond,new_cond)
     return home_made_func
 
-def parse_conditions(conds,debug_name=""):
+def parse_conditions(conds,debug=False):
     conds = encode_conditions(conds)
-    if debug_name == "payment_if_cond":
+    if debug:
         logging.debug("parse_conditions - after encoding: payment_if_cond = " + str(conds))
     python_inputs = []
     for i in conds:
@@ -390,9 +390,9 @@ def full_calc(strategies_vector, dimensions_rows_conds, dimensions_columns_conds
               dimensions_columns_categories_names, dimensions_ordered_row, dimensions_ordered_col, payment_conds):
 
     dimensions_rows_conds = parse_conditions(dimensions_rows_conds)
-    dimensions_columns_conds = parse_conditions(dimensions_columns_conds)
-    payment_conds = parse_conditions(payment_conds,"payment_if_cond")
-    logging.debug("full_calc - after parsing: payment_if_cond = " + str(payment_conds))
+    dimensions_columns_conds = parse_conditions(dimensions_columns_conds,True)
+    logging.debug("full_calc - after parsing: dimensions_columns_conds = " + str(dimensions_columns_conds))
+    payment_conds = parse_conditions(payment_conds)
     dimensions_matrix = create_dimensions_matrix(dimensions_rows_categories_names,
                                                  dimensions_columns_categories_names)
     dimensions_matrix = classify_strategies_to_dimensions(strategies_vector, dimensions_matrix,
@@ -882,7 +882,6 @@ def index(request):
                         strategies_constraints[datum] = str(form.cleaned_data[datum])
                     if ("payment" in datum) and ("cond" in datum):
                         payment_conds_dict[datum] =  str("=IF(" + form.cleaned_data[datum] + "," + form.cleaned_data[datum.replace('cond','res')] + ",0)")
-            logging.debug("Preprocessing: payment_if_cond = " + str(payment_conds_dict))
 
             for cond in payment_conds_dict:
                 if payment_conds_dict[cond]!='':
@@ -923,6 +922,7 @@ def index(request):
             dimensions_columns_conds = dimensions_columns_conds_temp
             dimensions_columns_conds = replace_variables_definitions_in_condition(dimensions_columns_conds,
                                                                                variables_definitions)
+            logging.debug("Preprocessing: dimensions_columns_conds = " + str(dimensions_columns_conds))
             # **********************************************************************************************************
 
             # **********************************************************************************************************
