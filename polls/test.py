@@ -116,3 +116,14 @@ print(decode_conditions(countcells))
 # quant = 's.count(i,s[i]>r[i])=2'
 # quant = 'foreach(i,(s[i]>=s[1] or [i]==[1]))'
 # print(generate_quantifier_vector(quant,'count'))
+old_str = "countcells(i,si>=T/2+1)=countcells(i,si>0)"
+def replace_variables_definitions_in_condition(old_str,variables_definitions):
+    new_str = old_str
+    for variables_definition in variables_definitions:
+        new_str = re.sub(r"\b" + variables_definition + r"\b", variables_definitions[variables_definition], new_str)
+
+def replace_variables_definitions(value_with_variable, variables_definitions):
+    for variables_definition in variables_definitions:
+        value_with_variable = value_with_variable.replace(variables_definition,
+                                                          variables_definitions[variables_definition])
+    return value_with_variable
