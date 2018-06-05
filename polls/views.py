@@ -995,7 +995,7 @@ def index(request):
                             strategies_vectors+= [[eval(str(strategies_vectors_str[datum]))]]
                 strategies_vectors = [list(strategy[0]) if type(strategy[0]) == tuple else strategy for strategy in
                                       strategies_vectors]
-            logging.debug("strategies_vectors=" + str(strategies_vectors))  
+            logging.debug("strategies_vectors=" + str(strategies_vectors))
             for i in range(1,11):
                 field_name = "dimensions_row_category_name_"+str(i)
                 if str(form.cleaned_data[field_name]) != '':
@@ -1019,6 +1019,8 @@ def index(request):
                     if str(form.cleaned_data[datum]) != '':
                         strategies_full_set = replace_variables_definitions(form.cleaned_data[datum], variables_definitions)
             if (strategies_vector_length != 0):
+                logging.debug("strategies_full_set=" + str(strategies_full_set))
+
                 all_strategies_generated = generate_all_strategies_product(strategies_vector_length,
                                                                                     strategies_full_set)
 
