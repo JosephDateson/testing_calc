@@ -123,31 +123,46 @@ def decode_conditions(conditions):
         conditions[i] = conditions[i].replace('("s")', '(s)')
         conditions[i] = conditions[i].replace('("r")', '(r)')
         for quantifier in ['exists', 'foreach','percell','countcells','increasing','decreasing','percellcost','cell']:
+            # Find all appearances of the quantifiers in the given condition
             exists = re.findall(r'\"(' + quantifier + '\(.*?\))\"', conditions[i], re.M | re.I)
             if quantifier == 'countcells':
                 exists = re.findall(r'(countcells\(.*?\)[<>=][<>=]*\d+)', conditions[i], re.M | re.I)
             for j in range(len(exists)):
+
                 exists_with_indices = list(exists)
                 exists_with_indices_vec=list(exists)
+
+                # Replace _ with [] for each s_i and r_i
                 entries = re.findall(r'(._.)', exists[j], re.M | re.I)
                 for k in range(len(entries)):
                     exists_with_indices[j] = exists_with_indices[j].replace(entries[k],
                                                                             (entries[k].replace("_", "[") + "]"))
+                # Replace = with ==
                 if not (">" in exists_with_indices[j]) and not ("<" in exists_with_indices[j]):
                     exists_with_indices[j] = exists_with_indices[j].replace("=", "==")
+
                 exists_with_indices[j]= exclude_self_index_from_cond(exists_with_indices[j])
+
                 if quantifier == 'countcells':
+                    logging.debug("decode_conditions: Starting to process countcells")
+                    logging.debug("decode_conditions: exists_with_indices[j] = "+str(exists_with_indices[j]))
+
                     for equal in re.findall(r'([^<>=]=)[^<>=]', exists_with_indices[j], re.M | re.I):
                         exists_with_indices[j] = exists_with_indices[j].replace(equal, equal+"=")
+                    logging.debug("decode_conditions: Switching = for ==: exists_with_indices[j] = " + str(exists_with_indices[j]))
+
                     #Non-vectorial home made functions
                     exists_with_indices[j] = exists_with_indices[j].replace('countcells', 's.count')
+                    logging.debug("decode_conditions: Switching countcells for s.count: exists_with_indices[j] = " + str(exists_with_indices[j]))
                     if len(re.findall(r'(\(\d+\))', exists_with_indices[j], re.M | re.I)) != len(re.findall(r'(count)', exists_with_indices[j], re.M | re.I)):
                         all_factors = re.findall(r"([^\*|\/|\+|\-\**]+)",exists_with_indices[j])
                         for factor in all_factors:
                             new_factor, exists_with_indices_vec[j] = generate_quantifier_vector(
                                 factor, "count")
                             exists_with_indices[j] = exists_with_indices[j].replace(factor,new_factor)
+                    logging.debug("decode_conditions: Switch count with list comprehension: exists_with_indices[j] = " + str(exists_with_indices[j]))
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
+                    logging.debug("decode_conditions: Final condition result: conditions[i] = " + str(conditions[i]))
                 elif quantifier=='cell':
                     exists_with_indices[j] = exists_with_indices[j].replace('cell', '')
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
