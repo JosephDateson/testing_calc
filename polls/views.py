@@ -985,7 +985,7 @@ def index(request):
                 strategies_vectors = [list(strategy[0]) if type(strategy[0]) == tuple else strategy for strategy in
                                       strategies_vectors]
             elif form.cleaned_data["strategies_upper_bound"]!='' and form.cleaned_data["strategies_lower_bound"]!='':
-                strategies_vectors = str([i for i in range(int(form.cleaned_data["strategies_lower_bound"]),int(form.cleaned_data["strategies_upper_bound"])+1)]).replace("[","").replace("]","").replace(" ","")
+                strategies_vectors = str([i for i in range(int(replace_variables_definitions(form.cleaned_data["strategies_lower_bound"], variables_definitions)),int(replace_variables_definitions(form.cleaned_data["strategies_upper_bound"], variables_definitions))+1)]).replace("[","").replace("]","").replace(" ","")
             else:
                 strategies_vectors_str = dict()
                 strategies_vectors = []
