@@ -148,8 +148,8 @@ def decode_conditions(conditions,debug=False):
                         logging.debug("decode_conditions: Starting to process countcells")
                         logging.debug("decode_conditions: exists_with_indices[j] = "+str(exists_with_indices[j]))
 
-                    for equal in re.findall(r'([^<>=]=)[^<>=]', exists_with_indices[j], re.M | re.I):
-                        exists_with_indices[j] = exists_with_indices[j].replace(equal, equal+"=")
+                    # for equal in re.findall(r'([^<>=]=)[^<>=]', exists_with_indices[j], re.M | re.I):
+                    #     exists_with_indices[j] = exists_with_indices[j].replace(equal, equal+"=")
                     if debug:
                         logging.debug("decode_conditions: Switching = for ==: exists_with_indices[j] = " + str(exists_with_indices[j]))
 
