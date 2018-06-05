@@ -748,7 +748,7 @@ def convert_nested_ifs_to_strings(nested_if):
 #         G, root = build_ast(e)
 #         python_constraints[i] = root.emit(G, context=None)
 #     return python_constraints
-
+# a
 def generate_all_strategies_combinations(n,full_set):
     # Generate all combinations of size n from the set full_set
     full_set_list = []
