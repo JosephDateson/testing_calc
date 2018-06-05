@@ -128,7 +128,7 @@ def decode_conditions(conditions):
         for quantifier in ['exists', 'foreach','percell','countcells','increasing','decreasing','percellcost','cell']:
             exists = re.findall(r'\"(' + quantifier + '\(.*?\))\"', conditions[i], re.M | re.I)
             if quantifier == 'countcells':
-                xists = re.findall(r'(countcells\(.*?\)[<>]*=\d+)', conditions[i], re.M | re.I)
+                xists = re.findall(r'(countcells\(.*?\)[<>=][<>=]*\d+)', conditions[i], re.M | re.I)
             for j in range(len(exists)):
                 exists_with_indices = list(exists)
                 exists_with_indices_vec=list(exists)
