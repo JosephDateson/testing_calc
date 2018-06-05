@@ -136,9 +136,11 @@ def decode_conditions(conditions):
                 if quantifier == 'countcells':
                     #Non-vectorial home made functions
                     exists_with_indices[j] = exists_with_indices[j].replace('countcells', 's.count')
+                    logging.debug('countcells parsed value before=' + str(exists_with_indices[j]))
                     if len(re.findall(r'(\(\d+\))', exists[j], re.M | re.I)) == 0:
                         exists_with_indices[j], exists_with_indices_vec[j] = generate_quantifier_vector(exists_with_indices[j], "count")
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
+                    logging.debug('countcells parsed value after=' + str(conditions[i]))
                 elif quantifier=='cell':
                     exists_with_indices[j] = exists_with_indices[j].replace('cell', '')
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
