@@ -985,8 +985,7 @@ def index(request):
                 strategies_vectors = [list(strategy[0]) if type(strategy[0]) == tuple else strategy for strategy in
                                       strategies_vectors]
             elif form.cleaned_data["strategies_upper_bound"]!='' and form.cleaned_data["strategies_lower_bound"]!='':
-                strategies_vectors = str([i for i in range(int(form.cleaned_data["strategies_lower_bound"]),int(form.cleaned_data["strategies_upper_bound"])+1)]).replace("[","").replace("]","").strip()
-                strategies_full_set = replace_variables_definitions(strategies_vectors, variables_definitions)
+                strategies_vectors = str([i for i in range(int(form.cleaned_data["strategies_lower_bound"]),int(form.cleaned_data["strategies_upper_bound"])+1)]).replace("[","").replace("]","").replace(" ","")
             else:
                 strategies_vectors_str = dict()
                 strategies_vectors = []
@@ -1021,6 +1020,9 @@ def index(request):
                     if str(form.cleaned_data[datum]) != '':
                         strategies_full_set = replace_variables_definitions(form.cleaned_data[datum], variables_definitions)
             if (strategies_vector_length != 0):
+                if strategies_full_set == "":
+                    strategies_full_set = replace_variables_definitions(strategies_vectors, variables_definitions)
+
                 logging.debug("strategies_full_set=" + str(strategies_full_set))
 
                 all_strategies_generated = generate_all_strategies_product(strategies_vector_length,
