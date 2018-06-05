@@ -989,7 +989,7 @@ def index(request):
                 strategies_vectors_str = dict()
                 strategies_vectors = []
                 for datum in form.cleaned_data:
-                    if ("vector" in datum):
+                    if ("vector" in datum) and not ("length" in datum):
                         strategies_vectors_str[datum] = form.cleaned_data[datum]
                         if str(strategies_vectors_str[datum]) != '':
                             strategies_vectors+= [[eval(str(strategies_vectors_str[datum]))]]
