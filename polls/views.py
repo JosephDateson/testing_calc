@@ -187,8 +187,10 @@ def exclude_self_index_from_cond(home_made_func):
         home_made_func = home_made_func.replace(cond,new_cond)
     return home_made_func
 
-def parse_conditions(conds):
+def parse_conditions(conds,debug_name=""):
     conds = encode_conditions(conds)
+    if debug_name == "payment_if_cond":
+        logging.debug("parse_conditions - after encoding: payment_if_cond = " + str(conds))
     python_inputs = []
     for i in conds:
         e = shunting_yard(i);
@@ -389,7 +391,8 @@ def full_calc(strategies_vector, dimensions_rows_conds, dimensions_columns_conds
 
     dimensions_rows_conds = parse_conditions(dimensions_rows_conds)
     dimensions_columns_conds = parse_conditions(dimensions_columns_conds)
-    payment_conds = parse_conditions(payment_conds)
+    payment_conds = parse_conditions(payment_conds,"payment_if_cond")
+    logging.debug("full_calc - after parsing: payment_if_cond = " + str(payment_conds))
     dimensions_matrix = create_dimensions_matrix(dimensions_rows_categories_names,
                                                  dimensions_columns_categories_names)
     dimensions_matrix = classify_strategies_to_dimensions(strategies_vector, dimensions_matrix,
@@ -795,6 +798,7 @@ def index(request):
         # Read the form's content
         form = NameForm(request.POST)
         if form.is_valid():
+            # Declaring all variables
             variables_definitions = dict()
             variables_names = dict()
             variables_values = dict()
@@ -810,6 +814,8 @@ def index(request):
             dimensions_columns_categories_names = []
             all_strategies_generated = []
 
+            # **********************************************************************************************************
+            # functions for variable definition
             def replace_variables_definitions(value_with_variable,variables_definitions):
                 for variables_definition in variables_definitions:
                     value_with_variable = value_with_variable.replace(variables_definition, variables_definitions[variables_definition])
@@ -824,6 +830,7 @@ def index(request):
                     old_str_list[i] = new_str
                 return old_str_list
 
+            # Process variables definitions from the form
             for datum in form.cleaned_data:
                 if ("var_name" in datum):
                     if str(form.cleaned_data[datum]) != '':
@@ -833,6 +840,10 @@ def index(request):
                         variables_values[datum.split("_")[2]] = str(form.cleaned_data[datum])
             for index in variables_names:
                 variables_definitions[variables_names[index]] = variables_values[index]
+            # **********************************************************************************************************
+
+            # **********************************************************************************************************
+            # Process conditions
             conditions = []
             for datum in form.cleaned_data:
                 if ("dimension" in datum) and ("row" in datum) and ("cond" in datum):
@@ -841,12 +852,14 @@ def index(request):
                     elif str(form.cleaned_data[datum]) != '':
                         conditions += [str("IF(" + form.cleaned_data[datum] + ",\"" + form.cleaned_data[
                                 datum.replace('cond', 'name').replace('if', 'category')] + "\",<next_condition>)")]
+
             for i in range(1,len(conditions)):
                 conditions[i] = conditions[i].replace("<next_condition>",conditions[i-1])
             dimensions_rows_conds_dict['dimensions_row_if_cond_1'] = "="+conditions[len(conditions)-1].replace("<next_condition>", last)
             strategies_symbols = re.findall("[-,=><(](s[0-9a-z]+?|r[0-9a-z]+?)", dimensions_rows_conds_dict['dimensions_row_if_cond_1'])
             for symbol in strategies_symbols:
                 dimensions_rows_conds_dict['dimensions_row_if_cond_1'] = dimensions_rows_conds_dict['dimensions_row_if_cond_1'].replace(symbol,symbol[0]+"_"+symbol[1:])
+
             conditions = []
             for datum in form.cleaned_data:
                 if ("dimension" in datum) and ("column" in datum) and ("cond" in datum):
@@ -855,6 +868,7 @@ def index(request):
                     elif str(form.cleaned_data[datum]) != '':
                         conditions += [str("IF(" + form.cleaned_data[datum] + ",\"" + form.cleaned_data[
                             datum.replace('cond', 'name').replace('if', 'category')] + "\",<next_condition>)")]
+
             for i in range(1, len(conditions)):
                 conditions[i] = conditions[i].replace("<next_condition>", conditions[i - 1])
             dimensions_columns_conds_dict['dimensions_column_if_cond_1'] = "=" + conditions[len(conditions) - 1].replace("<next_condition>", last)
@@ -868,10 +882,12 @@ def index(request):
                         strategies_constraints[datum] = str(form.cleaned_data[datum])
                     if ("payment" in datum) and ("cond" in datum):
                         payment_conds_dict[datum] =  str("=IF(" + form.cleaned_data[datum] + "," + form.cleaned_data[datum.replace('cond','res')] + ",0)")
+            logging.debug("Preprocessing: payment_if_cond = " + str(payment_conds_dict))
 
             for cond in payment_conds_dict:
                 if payment_conds_dict[cond]!='':
                     payment_conds +=[payment_conds_dict[cond]]
+
             payment_conds_temp = []
             for cond in payment_conds:
                 strategies_symbols = re.findall("[-,=><(](s[0-9a-z]+?|r[0-9a-z]+?)",cond)
@@ -907,6 +923,10 @@ def index(request):
             dimensions_columns_conds = dimensions_columns_conds_temp
             dimensions_columns_conds = replace_variables_definitions_in_condition(dimensions_columns_conds,
                                                                                variables_definitions)
+            # **********************************************************************************************************
+
+            # **********************************************************************************************************
+            # Process generator fields
             strategies_full_set = ""
             if form.cleaned_data["strategies_vector_single"] != '':
                 tuples = re.findall("\(.+?\)", str(form.cleaned_data["strategies_vector_single"]))
@@ -958,6 +978,7 @@ def index(request):
                 if ("strategies_full_set" in datum):
                     if str(form.cleaned_data[datum]) != '':
                         strategies_full_set = replace_variables_definitions(form.cleaned_data[datum], variables_definitions)
+
             if (strategies_vector_length != 0):
                 if strategies_full_set == "":
                     strategies_full_set = replace_variables_definitions(strategies_vectors, variables_definitions)
@@ -968,6 +989,10 @@ def index(request):
                     all_strategies_generated = generate_all_strategies_product(strategies_vector_length, strategies_full_set)
                 strategies_constraints=convert_to_excel_conds(strategies_constraints)
                 strategies_vectors = strategies_filter(all_strategies_generated,strategies_constraints)
+            # **********************************************************************************************************
+
+            # **********************************************************************************************************
+            # Run the Calc
             dimensions_matrix=full_calc(strategies_vectors, dimensions_rows_conds, dimensions_columns_conds,dimensions_rows_categories_names,dimensions_columns_categories_names,dimensions_rows_categories_names,dimensions_columns_categories_names,payment_conds)
             return HttpResponse(create_html_table(dimensions_matrix,dimensions_rows_categories_names,dimensions_columns_categories_names))
         else:
