@@ -62,7 +62,7 @@ def encode_conditions(conditions):
         percell = re.findall(r'(percell\(.*?\)),', conditions[i], re.M | re.I)
         for j in range(len(percell)):
             conditions[i] = conditions[i].replace(percell[j], '\"' + percell[j] + '\"')
-        countcells = re.findall(r'(countcells\(.*?\)=\d+)', conditions[i], re.M | re.I)
+        countcells = list(set(re.findall(r'(countcells\(.*?\))', conditions[i], re.M | re.I)))
         for j in range(len(countcells)):
             conditions[i] = conditions[i].replace(countcells[j], '\"' + countcells[j] + '\"')
         increasing = re.findall(r'(increasing\(\))', conditions[i], re.M | re.I)
