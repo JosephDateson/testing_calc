@@ -42,7 +42,7 @@ def decode_conditions(conditions):
         for quantifier in ['exists', 'foreach','percell','countcells','increasing','decreasing','percellcost','cell']:
             exists = re.findall(r'\"(' + quantifier + '\(.*?\))\"', conditions[i], re.M | re.I)
             if quantifier == 'countcells':
-                exists = re.findall(r'(countcells\(.*?\)=\d+)', conditions[i], re.M | re.I)
+                exists = re.findall(r'(countcells\(.*?\)[<>]*=\d+)', conditions[i], re.M | re.I)
             for j in range(len(exists)):
                 exists_with_indices = list(exists)
                 exists_with_indices_vec=list(exists)
@@ -121,5 +121,5 @@ def exclude_self_index_from_cond(home_made_func):
         # print "cond="+str(home_made_func.replace(cond,new_cond))
         home_made_func = home_made_func.replace(cond,new_cond)
     return home_made_func
-countcells = ['("1" if "countcells(i,s_i>r_i)+countcells(i,s_i>5)=2" else ("2" if "countcells(0)+countcells(0)=1" else "3"))']
+countcells = ['("1" if "countcells(i,s_i>r_i)+countcells(i,s_i>5)>=2" else ("2" if "countcells(0)+countcells(0)=1" else "3"))']
 print(decode_conditions(countcells))
