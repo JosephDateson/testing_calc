@@ -1013,6 +1013,7 @@ def index(request):
                 if ("strategies_vector_length" in datum):
                     if str(form.cleaned_data[datum]) != '':
                         strategies_vector_length = int(replace_variables_definitions(form.cleaned_data[datum], variables_definitions))
+                        logging.debug("strategies_vector_length=" + str(strategies_vector_length))
                 if ("strategies_full_set" in datum):
                     if str(form.cleaned_data[datum]) != '':
                         strategies_full_set = replace_variables_definitions(form.cleaned_data[datum], variables_definitions)

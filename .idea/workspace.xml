@@ -24,7 +24,7 @@
         <entry file="file://$PROJECT_DIR$/polls/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="269">
-              <caret line="1015" column="40" lean-forward="false" selection-start-line="1015" selection-start-column="21" selection-end-line="1015" selection-end-column="40" />
+              <caret line="1015" column="98" lean-forward="false" selection-start-line="1015" selection-start-column="98" selection-end-line="1015" selection-end-column="98" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
                 <element signature="e#22945#23321#0" expanded="false" />
@@ -630,7 +630,7 @@
     <entry file="file://$PROJECT_DIR$/polls/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="269">
-          <caret line="1015" column="40" lean-forward="false" selection-start-line="1015" selection-start-column="21" selection-end-line="1015" selection-end-column="40" />
+          <caret line="1015" column="98" lean-forward="false" selection-start-line="1015" selection-start-column="98" selection-end-line="1015" selection-end-column="98" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
             <element signature="e#22945#23321#0" expanded="false" />
