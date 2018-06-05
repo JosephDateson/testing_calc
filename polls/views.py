@@ -997,7 +997,6 @@ def index(request):
                     strategies_vectors += [[eval(str(strategy))]]
                 strategies_vectors = [list(strategy[0]) if type(strategy[0]) == tuple else strategy for strategy in
                                       strategies_vectors]
-                strategies_full_set = replace_variables_definitions(strategies_vectors, variables_definitions)
             elif form.cleaned_data["strategies_upper_bound"]!='' and form.cleaned_data["strategies_lower_bound"]!='':
                 strategies_vectors = str([i for i in range(int(replace_variables_definitions(form.cleaned_data["strategies_lower_bound"], variables_definitions)),int(replace_variables_definitions(form.cleaned_data["strategies_upper_bound"], variables_definitions))+1)]).replace("[","").replace("]","").replace(" ","")
             else:
@@ -1055,6 +1054,9 @@ def index(request):
 
                 strategies_constraints=convert_to_excel_conds(strategies_constraints)
                 strategies_vectors = strategies_filter(all_strategies_generated,strategies_constraints)
+            logging.debug("strategies_vectors in the end=" + str(strategies_vectors))
+            strategies_vectors = replace_variables_definitions(strategies_vectors, variables_definitions)
+
             # logging.debug("strategies_vectors="+str(strategies_vectors))
             # logging.debug(str(dimensions_rows_conds))
             # logging.debug("strategies all")
