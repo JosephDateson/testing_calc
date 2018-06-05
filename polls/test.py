@@ -53,6 +53,8 @@ def generate_quantifier_vector(quantifier, type='exists'):
         condition_vec_exp += ")"
     if type == "count":
         condition_vec_exp += exp_after_paranth
+        for equal in re.findall(r'([^<>=]=)[^<>=]', condition_vec_exp, re.M | re.I):
+            condition_vec_exp = condition_vec_exp.replace(equal,"==")
     condition_vec = condition_vec_exp[condition_vec_exp.index('['):]
     return (condition_vec_exp,condition_vec)
 
@@ -117,7 +119,7 @@ def decode_conditions(conditions):
 
 
 # foreach = ['("S" if "foreach(i,s_i>=r_i)" else ("L" if "foreach(i,s_i<=s_1)" else "M"))']
-countcells = ['("1" if "countcells(i,s_i>5)=2" else ("2" if "countcells(0)=1" else "3"))']
+countcells = ['("1" if "countcells(i,s_i>r_i)=2" else ("2" if "countcells(0)=1" else "3"))']
 print(decode_conditions(countcells))
 # quant = "countcells(i,si>5)+countcells(1)=2" #'s.count(i,s[i]>r[i])=2'
 # quant = 'foreach(i,(s[i]>=s[1] or [i]==[1]))'
