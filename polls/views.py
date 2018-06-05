@@ -151,9 +151,11 @@ def decode_conditions(conditions):
                     if quantifier=='percell':
                         # print "percell"
                         # print "before conditions[i]="+str( conditions[i])
+                        logging.debug('percell parsed value before=' + str(conditions[i]))
                         full_cond_percell = ' if ' + exists_with_indices[j]
                         conditions[i] = re.sub(r'(\d+)' + re.escape(full_cond_percell),
                                      r'\1*' + 'sum('+exists_with_indices_vec[j] +')'+full_cond_percell, conditions[i])
+                        logging.debug('percell parsed value after='+str(conditions[i]))
                     elif quantifier=='percellcost':
                         # print "percellcost"
                         # print "before conditions[i]=" + str(conditions[i])
