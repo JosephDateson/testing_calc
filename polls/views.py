@@ -141,11 +141,19 @@ def decode_conditions(conditions):
                     exists_with_indices[j] = exists_with_indices[j].replace("=", "==")
                 exists_with_indices[j]= exclude_self_index_from_cond(exists_with_indices[j])
                 if quantifier == 'countcells':
+                    for equal in re.findall(r'([^<>=]=)[^<>=]', exists_with_indices[j], re.M | re.I):
+                        exists_with_indices[j] = exists_with_indices[j].replace(equal, equal+"=")
                     #Non-vectorial home made functions
                     exists_with_indices[j] = exists_with_indices[j].replace('countcells', 's.count')
                     logging.debug('countcells parsed value before=' + str(exists_with_indices[j]))
-                    if len(re.findall(r'(\(\d+\))', exists[j], re.M | re.I)) != len(re.findall(r'(count)', exists[j], re.M | re.I)):
-                        exists_with_indices[j], exists_with_indices_vec[j] = generate_quantifier_vector(exists_with_indices[j], "count")
+                    if len(re.findall(r'(\(\d+\))', exists_with_indices[j], re.M | re.I)) != len(re.findall(r'(count)', exists_with_indices[j], re.M | re.I)):
+                        exp_after_paranth = exists_with_indices[j].split(")")[len(exists_with_indices[j].split(")")) - 1]
+                        all_factors = re.findall(r"([^\*|\/|\+|\-\**]+)",exists_with_indices[j])
+                        for factor in all_factors:
+                            new_factor, exists_with_indices_vec[j] = generate_quantifier_vector(
+                                factor, "count")
+                            exists_with_indices[j] = exists_with_indices[j].replace(factor,new_factor)
+                        exists_with_indices[j] = exists_with_indices[j]+exp_after_paranth
                     conditions[i] = conditions[i].replace('\"' + exists[j] + '\"', exists_with_indices[j])
                     logging.debug('countcells parsed value after=' + str(conditions[i]))
                 elif quantifier=='cell':
