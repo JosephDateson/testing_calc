@@ -577,6 +577,28 @@ def in_house_hash(string):
     binary_rep = ''.join(format(ord(x), 'b') for x in string)
     return str(int(binary_rep,2))
 class NameForm(forms.Form):
+    var_name_1 = forms.CharField(max_length=1000, required=False)
+    var_name_2 = forms.CharField(max_length=1000, required=False)
+    var_name_3 = forms.CharField(max_length=1000, required=False)
+    var_name_4 = forms.CharField(max_length=1000, required=False)
+    var_name_5 = forms.CharField(max_length=1000, required=False)
+    var_name_6 = forms.CharField(max_length=1000, required=False)
+    var_name_7 = forms.CharField(max_length=1000, required=False)
+    var_name_8 = forms.CharField(max_length=1000, required=False)
+    var_name_9 = forms.CharField(max_length=1000, required=False)
+    var_name_10 = forms.CharField(max_length=1000, required=False)
+
+    var_val_1 = forms.CharField(max_length=1000, required=False)
+    var_val_2 = forms.CharField(max_length=1000, required=False)
+    var_val_3 = forms.CharField(max_length=1000, required=False)
+    var_val_4 = forms.CharField(max_length=1000, required=False)
+    var_val_5 = forms.CharField(max_length=1000, required=False)
+    var_val_6 = forms.CharField(max_length=1000, required=False)
+    var_val_7 = forms.CharField(max_length=1000, required=False)
+    var_val_8 = forms.CharField(max_length=1000, required=False)
+    var_val_9 = forms.CharField(max_length=1000, required=False)
+    var_val_10 = forms.CharField(max_length=1000, required=False)
+
     strategies_vector_length = forms.CharField(max_length=1000, required=False)
     strategies_full_set = forms.CharField(max_length=1000, required=False)
 
@@ -827,6 +849,9 @@ def index(request):
         # Read the form's content
         form = NameForm(request.POST)
         if form.is_valid():
+            variables_definitions = dict()
+            variables_names = dict()
+            variables_values = dict()
             strategies_constraints = dict()
             payment_conds_dict = dict()
             payment_conds = []
@@ -838,6 +863,22 @@ def index(request):
             dimensions_rows_categories_names = []
             dimensions_columns_categories_names = []
             all_strategies_generated = []
+
+
+            def replace_variables_definitions(value_with_variable,variables_definitions):
+                for variables_definition in variables_definitions:
+                    value_with_variable = value_with_variable.replace(variables_definition, variables_definitions[variables_definition])
+                return value_with_variable
+
+            for datum in form.cleaned_data:
+                if ("var_name" in datum):
+                    if str(form.cleaned_data[datum]) != '':
+                        variables_names[datum.split("_")[2]] = str(form.cleaned_data[datum])
+                if ("var_val" in datum):
+                    if str(form.cleaned_data[datum]) != '':
+                        variables_values[datum.split("_")[2]] = str(form.cleaned_data[datum])
+            for index in variables_names:
+                variables_definitions[variables_names[index]] = variables_values[index]
 
             conditions = []
             for datum in form.cleaned_data:
@@ -971,10 +1012,10 @@ def index(request):
             for datum in form.cleaned_data:
                 if ("strategies_vector_length" in datum):
                     if str(form.cleaned_data[datum]) != '':
-                        strategies_vector_length = int(form.cleaned_data[datum])
+                        strategies_vector_length = int(replace_variables_definitions(form.cleaned_data[datum], variables_definitions))
                 if ("strategies_full_set" in datum):
                     if str(form.cleaned_data[datum]) != '':
-                        strategies_full_set = form.cleaned_data[datum]
+                        strategies_full_set = replace_variables_definitions(form.cleaned_data[datum], variables_definitions)
             if (strategies_vector_length != 0):
                 all_strategies_generated = generate_all_strategies_product(strategies_vector_length,
                                                                                     strategies_full_set)
