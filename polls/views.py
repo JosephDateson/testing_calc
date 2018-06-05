@@ -792,9 +792,10 @@ def convert_nested_ifs_to_strings(nested_if):
 def generate_all_strategies_combinations(n,full_set):
     # Generate all combinations of size n from the set full_set
     full_set_list = []
-    full_set_str = full_set.replace("{","[").replace("}","]")
+    full_set_str = "[" + full_set + "]"
     exec "full_set_list="+full_set_str
-    return list(itertools.combinations(full_set_list, n))
+    return set(itertools.combinations(full_set_list, n))
+
 def generate_all_strategies_product(n,full_set):
     # Generate all tuples of size n from the set full_set
     full_set_list = []
@@ -996,6 +997,7 @@ def index(request):
                     strategies_vectors += [[eval(str(strategy))]]
                 strategies_vectors = [list(strategy[0]) if type(strategy[0]) == tuple else strategy for strategy in
                                       strategies_vectors]
+                strategies_full_set = replace_variables_definitions(strategies_vectors, variables_definitions)
             elif form.cleaned_data["strategies_upper_bound"]!='' and form.cleaned_data["strategies_lower_bound"]!='':
                 strategies_vectors = str([i for i in range(int(replace_variables_definitions(form.cleaned_data["strategies_lower_bound"], variables_definitions)),int(replace_variables_definitions(form.cleaned_data["strategies_upper_bound"], variables_definitions))+1)]).replace("[","").replace("]","").replace(" ","")
             else:
@@ -1042,8 +1044,14 @@ def index(request):
 
                 logging.debug("strategies_full_set=" + str(strategies_full_set))
 
-                all_strategies_generated = generate_all_strategies_product(strategies_vector_length,
+                if "ignore permutations" in strategies_constraints:
+                    del strategies_constraints["ignore permutations"]
+                    all_strategies_generated = generate_all_strategies_combinations(strategies_vector_length,
                                                                                     strategies_full_set)
+                else:
+                    all_strategies_generated = generate_all_strategies_product(strategies_vector_length,
+                                                                                    strategies_full_set)
+
 
                 strategies_constraints=convert_to_excel_conds(strategies_constraints)
                 strategies_vectors = strategies_filter(all_strategies_generated,strategies_constraints)
