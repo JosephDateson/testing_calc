@@ -218,6 +218,35 @@ function change_collapse(has_strategies_vector_single)
 	acc_collapse_gen.setAttribute("class",comp_new_acc_mode);
 	acc_collapse_gen.setAttribute("aria-expanded",!has_strategies_vector_single);
 }
+function change_collapse_def(has_var_name_1)
+{
+	
+	if (has_var_name_1)
+	{
+		var new_collapse_mode = "panel-collapse collapse in";
+		var new_style_collapse_mode = "";
+		var comp_new_style_collapse_mode = "height: 0px;";
+		var comp_new_collapse_mode = "panel-collapse collapse";
+		var new_acc_mode = "accordion-toggle";
+		var comp_new_acc_mode = "accordion-toggle collapsed";
+	}
+	else
+	{
+		var new_collapse_mode = "panel-collapse collapse";
+		var new_style_collapse_mode = "height: 0px;";
+		var comp_new_style_collapse_mode = "";
+		var comp_new_collapse_mode = "panel-collapse collapse in";
+		var new_acc_mode = "accordion-toggle collapsed";
+		var comp_new_acc_mode = "accordion-toggle";
+	}
+	var collapse_manual = document.getElementById("collapse20");
+	var acc_collapse_manual = document.getElementById("accordion_collapse1");
+	collapse_manual.setAttribute("class",new_collapse_mode);
+	collapse_manual.setAttribute("aria-expanded",has_var_name_1);
+	collapse_manual.setAttribute("style",new_style_collapse_mode);
+	acc_collapse_manual.setAttribute("class",new_acc_mode);
+	acc_collapse_manual.setAttribute("aria-expanded",has_var_name_1);
+}
 function load_example(example_name)
 {
 	var jsonData = load_data[example_name];
