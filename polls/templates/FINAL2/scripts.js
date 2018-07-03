@@ -222,7 +222,9 @@ function load_example(example_name)
 {
 	var jsonData = load_data[example_name];
 	var has_strategies_vector_single = load_data[example_name]['strategies_vector_single']!='' ? true : false;
+	var has_var_name_1 = load_data[example_name]['var_name_1']!='' ? true : false;
 	change_collapse(has_strategies_vector_single);
+	change_collapse(has_var_name_1);
 	load(jsonData);
 }
 
