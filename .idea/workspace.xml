@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6fa5e87c-5aed-4114-9d31-1e555d91247e" name="Default" comment="checking the testing system in heroku - test should pass">
+    <list default="true" id="6fa5e87c-5aed-4114-9d31-1e555d91247e" name="Default" comment="configuring .travis.yml file for travis CI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_demo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,12 +35,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="py" value="7" />
-          <entry key="txt" value="78" />
+          <entry key="txt" value="141" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="78" />
+          <entry key="PLAIN_TEXT" value="141" />
           <entry key="Python" value="7" />
         </counts>
       </usages-collector>
@@ -403,7 +403,21 @@
       <option name="project" value="LOCAL" />
       <updated>1538372417202</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="checking the testing system in heroku - test should fail">
+      <created>1538372747333</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1538372747333</updated>
+    </task>
+    <task id="LOCAL-00005" summary="configuring .travis.yml file for travis CI">
+      <created>1538373329131</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1538373329131</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -415,7 +429,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49920508" visible="true" weight="0.22202487" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49920508" visible="true" weight="0.22202487" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39980546" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -434,9 +448,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="checking the testing system in heroku" />
-    <MESSAGE value="checking the testing system in heroku - test should fail" />
     <MESSAGE value="checking the testing system in heroku - test should pass" />
-    <option name="LAST_COMMIT_MESSAGE" value="checking the testing system in heroku - test should pass" />
+    <MESSAGE value="checking the testing system in heroku - test should fail" />
+    <MESSAGE value="configuring .travis.yml file for travis CI" />
+    <option name="LAST_COMMIT_MESSAGE" value="configuring .travis.yml file for travis CI" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
