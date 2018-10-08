@@ -471,6 +471,7 @@ def create_html_table(dimensions_matrix,dimensions_rows_categories_names,dimensi
             strategies = ""
             is_MD_eq = False
             is_Global_eq = False
+            strategy_for_link = 0
             if (dimensions_matrix[row][col]['best_response'] != ()):
                 strategies+=create_cell(dimensions_matrix[row][col]['best_response'])
                 strategy_for_link = dimensions_matrix[row][col]['best_response']

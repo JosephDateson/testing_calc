@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6fa5e87c-5aed-4114-9d31-1e555d91247e" name="Default" comment="test should pass">
+    <list default="true" id="6fa5e87c-5aed-4114-9d31-1e555d91247e" name="Default" comment="removing &quot;after \n parsing&quot; in lines 151,152 in polls/views.py">
       <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,6 +28,18 @@
           <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="7" />
+          <entry key="txt" value="64" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="64" />
+          <entry key="Python" value="7" />
+        </counts>
+      </usages-collector>
     </session>
   </component>
   <component name="FavoritesManager">
@@ -38,8 +50,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/polls/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="151" column="99" selection-start-line="151" selection-start-column="99" selection-end-line="151" selection-end-column="99" />
+            <state relative-caret-position="44">
+              <caret line="473" column="33" selection-start-line="473" selection-start-column="33" selection-end-line="473" selection-end-column="33" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
                 <element signature="e#242#310#0" />
@@ -54,7 +66,6 @@
                 <element signature="e#27208#31860#0" />
                 <element signature="e#31949#37323#0" />
                 <element signature="e#37368#38942#0" />
-                <element signature="e#40291#47097#0" />
                 <element signature="e#47261#48830#0" />
                 <element signature="e#48862#48953#0" />
                 <element signature="e#48986#63503#0" />
@@ -157,7 +168,13 @@
     </replaceStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="JosephDateson &lt;34838360+josephdateson@users.noreply.github.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="WARN_ABOUT_DETACHED_HEAD" value="false" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -185,25 +202,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="multi-dimensional-equilibriun" type="b2602c69:ProjectViewProjectNode" />
-              <item name="multi-dimensional-equilibriun" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="multi-dimensional-equilibriun" type="b2602c69:ProjectViewProjectNode" />
-              <item name="multi-dimensional-equilibriun" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -328,6 +327,14 @@
       <option name="presentableId" value="Default" />
       <updated>1515154512259</updated>
     </task>
+    <task id="LOCAL-00001" summary="removing &quot;after \n parsing&quot; in lines 151,152 in polls/views.py">
+      <created>1539035670676</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1539035670676</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -355,6 +362,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="removing &quot;after \n parsing&quot; in lines 151,152 in polls/views.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="removing &quot;after \n parsing&quot; in lines 151,152 in polls/views.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -418,8 +429,8 @@
     <entry file="file://$USER_HOME$/Downloads/DA_203036256 (1).py" />
     <entry file="file://$PROJECT_DIR$/polls/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="151" column="99" selection-start-line="151" selection-start-column="99" selection-end-line="151" selection-end-column="99" />
+        <state relative-caret-position="44">
+          <caret line="473" column="33" selection-start-line="473" selection-start-column="33" selection-end-line="473" selection-end-column="33" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
             <element signature="e#242#310#0" />
@@ -434,7 +445,6 @@
             <element signature="e#27208#31860#0" />
             <element signature="e#31949#37323#0" />
             <element signature="e#37368#38942#0" />
-            <element signature="e#40291#47097#0" />
             <element signature="e#47261#48830#0" />
             <element signature="e#48862#48953#0" />
             <element signature="e#48986#63503#0" />
