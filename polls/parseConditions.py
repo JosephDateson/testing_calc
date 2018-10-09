@@ -2,7 +2,10 @@ import re
 import logging
 
 def encode_conditions(conditions):
-    # Replaces proprietary expressions with strings in order to parse excel expressions
+    '''
+    :param conditions: Columns, rows and payment conditions
+    :return: Replaces proprietary expressions with strings in order to parse excel expressions
+    '''
     for i in range(len(conditions)):
         conditions[i] = conditions[i].replace("(s)", '("s")')
         conditions[i] = conditions[i].replace("(r)", '("r")')
@@ -43,7 +46,10 @@ def encode_conditions(conditions):
     return conditions
 
 def exclude_self_index_from_cond(home_made_func):
-    '''Prevent the case of s[i]>s[1] being checked for s[1]. i.e. s[1]>s[1]'''
+    '''
+    :param home_made_func:
+    :return: Prevent the case of s[i]>s[1] being checked for s[1]. i.e. s[1]>s[1]
+    '''
     indices = re.findall(r'\[\w+\]', home_made_func, re.M | re.I)
     has_digit = False
     has_alpha = False
@@ -62,14 +68,20 @@ def exclude_self_index_from_cond(home_made_func):
     return home_made_func
 
 def generate_quantifier_vector(quantifier, type='exists'):
-    '''Receive an exist condition and generate a boolean vector based on it's condition
-        Type can be either exists or for_each'''
+    '''
+    :param quantifier: A condition with a logical quantifier
+    :param type: exists or for_each
+    :return: generate a boolean vector based on the received quantifier
+    '''
     exp_in_paranth = re.findall(r'' + type + '\((.*?\))\)', quantifier, re.M | re.I)
     digits = re.findall(r'\((\d+)\)', quantifier, re.M | re.I)
+
     if exp_in_paranth == []:
+        # Get inner parenthesis
         exp_in_paranth = re.findall(r'' + type + '\((.*?)\)', quantifier, re.M | re.I)
     if len(exp_in_paranth) == 0:
         return quantifier,quantifier
+
     exp_in_paranth = exp_in_paranth[0].split(",")
     for digit in digits:
         if digit in exp_in_paranth:

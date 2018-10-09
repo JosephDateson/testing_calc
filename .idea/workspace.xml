@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fa5e87c-5aed-4114-9d31-1e555d91247e" name="Default" comment="removing &quot;after \n parsing&quot; in lines 151,152 in polls/views.py">
-      <change afterPath="$PROJECT_DIR$/polls/parseConditions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/parseConditions.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/parseConditions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,14 +32,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="28" />
-          <entry key="py" value="777" />
+          <entry key="py" value="937" />
           <entry key="txt" value="64" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="92" />
-          <entry key="Python" value="777" />
+          <entry key="Python" value="937" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -60,16 +59,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/polls/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="227" column="13" lean-forward="true" selection-start-line="227" selection-start-column="13" selection-end-line="227" selection-end-column="13" />
+            <state relative-caret-position="170">
+              <caret line="58" selection-start-line="58" selection-end-line="59" selection-end-column="4" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
                 <element signature="e#842#854#0" />
                 <element signature="e#15862#15977#0" />
-                <element signature="e#16092#16103#0" />
                 <element signature="e#26524#26767#0" />
                 <element signature="e#26874#27149#0" />
                 <element signature="e#27208#31860#0" />
@@ -89,14 +87,14 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/polls/parseConditions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
+            <state relative-caret-position="731">
+              <caret line="85" column="4" selection-start-line="85" selection-start-column="4" selection-end-line="85" selection-end-column="4" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <element signature="e#39#2065#0" />
+                <element signature="e#65#2069#0" />
               </folding>
             </state>
           </provider>
@@ -161,7 +159,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>generate_quantifier_vector</find>
       <find>d+</find>
       <find>strategies_lower_bound</find>
       <find>after</find>
@@ -180,7 +177,6 @@
       <find>payment</find>
       <find>full_calc</find>
       <find>after parsing</find>
-      <find>not_strictly_decreasing</find>
       <find>strategy_for_link</find>
       <find>HTML_HEADER_TEXT</find>
       <find>htmlHeaderTextWithDate</find>
@@ -188,9 +184,11 @@
       <find>htmlIndexFile</find>
       <find>empty_url</find>
       <find>not_strictly_increasing</find>
-      <find>parse_conditions</find>
       <find>encode_conditions</find>
       <find>decode_conditions</find>
+      <find>parse_conditions</find>
+      <find>exclude_self_index_from_cond</find>
+      <find>not_strictly_decreasing</find>
     </findStrings>
     <replaceStrings>
       <replace>Multi-Dimensional Equilibrium Calculator - Result</replace>
@@ -569,15 +567,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/polls/parseConditions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="85" column="4" selection-start-line="85" selection-start-column="4" selection-end-line="85" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#65#2069#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/polls/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="227" column="13" lean-forward="true" selection-start-line="227" selection-start-column="13" selection-end-line="227" selection-end-column="13" />
+        <state relative-caret-position="170">
+          <caret line="58" selection-start-line="58" selection-end-line="59" selection-end-column="4" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
             <element signature="e#842#854#0" />
             <element signature="e#15862#15977#0" />
-            <element signature="e#16092#16103#0" />
             <element signature="e#26524#26767#0" />
             <element signature="e#26874#27149#0" />
             <element signature="e#27208#31860#0" />
@@ -592,17 +600,6 @@
             <element signature="e#75732#76341#0" />
             <element signature="e#76392#76595#0" />
             <element signature="e#76874#77087#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/polls/parseConditions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="47" column="11" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#39#2065#0" />
           </folding>
         </state>
       </provider>

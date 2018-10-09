@@ -50,14 +50,14 @@ def empty_url(request):
 
 # depreated
 # {
-#     def not_strictly_increasing(L):
-#         return (all(x <= y for x, y in zip(L, L[1:])) and any(x < y for x, y in zip(L, L[1:])))
+def not_strictly_increasing(L):
+    return (all(x <= y for x, y in zip(L, L[1:])) and any(x < y for x, y in zip(L, L[1:])))
 # }
 
 # deprecated
 # {
-#     def not_strictly_decreasing(L):
-#         return (all(x >= y for x, y in zip(L, L[1:])) and any(x > y for x, y in zip(L, L[1:])))
+def not_strictly_decreasing(L):
+    return (all(x >= y for x, y in zip(L, L[1:])) and any(x > y for x, y in zip(L, L[1:])))
 # }
 
 # deprecated
