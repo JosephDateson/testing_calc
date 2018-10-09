@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fa5e87c-5aed-4114-9d31-1e555d91247e" name="Default" comment="removing &quot;after \n parsing&quot; in lines 151,152 in polls/views.py">
-      <change beforePath="$PROJECT_DIR$/polls/demo_import_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/demo_import_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/htmlIndexFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/htmlResultFile.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -60,11 +58,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/polls/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="536" column="33" selection-start-line="536" selection-start-column="19" selection-end-line="536" selection-end-column="33" />
+            <state relative-caret-position="221">
+              <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
                 <element signature="e#242#310#0" />
@@ -93,7 +91,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/polls/demo_import_test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
@@ -201,8 +199,8 @@
         <option value="$PROJECT_DIR$/polls/test2.py" />
         <option value="$USER_HOME$/Downloads/DA_203036256 (1).py" />
         <option value="$PROJECT_DIR$/polls/htmlIndexFile.py" />
-        <option value="$PROJECT_DIR$/polls/views.py" />
         <option value="$PROJECT_DIR$/polls/demo_import_test.py" />
+        <option value="$PROJECT_DIR$/polls/views.py" />
       </list>
     </option>
   </component>
@@ -533,10 +531,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/polls/demo_import_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/polls/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="536" column="33" selection-start-line="536" selection-start-column="19" selection-end-line="536" selection-end-column="33" />
+        <state relative-caret-position="221">
+          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
             <element signature="e#242#310#0" />
@@ -561,13 +566,6 @@
             <element signature="e#76392#76595#0" />
             <element signature="e#76874#77087#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/polls/demo_import_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
         </state>
       </provider>
     </entry>
