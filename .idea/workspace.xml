@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6fa5e87c-5aed-4114-9d31-1e555d91247e" name="Default" comment="removing &quot;after \n parsing&quot; in lines 151,152 in polls/views.py">
       <change beforePath="$PROJECT_DIR$/polls/parseSubmittedData.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/parseSubmittedData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,14 +32,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="28" />
-          <entry key="py" value="1288" />
+          <entry key="py" value="1447" />
           <entry key="txt" value="64" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="92" />
-          <entry key="Python" value="1288" />
+          <entry key="Python" value="1447" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -58,11 +59,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/polls/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9">
-              <caret line="853" column="32" selection-start-line="853" selection-end-line="854" />
+            <state relative-caret-position="130">
+              <caret line="817" selection-start-line="817" selection-end-line="825" selection-end-column="15" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
                 <element signature="e#842#854#0" />
@@ -73,15 +74,10 @@
                 <element signature="e#31949#37323#0" />
                 <element signature="e#37368#38942#0" />
                 <element signature="e#39180#40173#0" />
-                <element signature="e#40291#47097#0" />
                 <element signature="e#47261#48830#0" />
                 <element signature="e#48862#48953#0" />
                 <element signature="e#48986#63503#0" />
-                <element signature="e#64719#64943#0" />
-                <element signature="e#65001#65266#0" />
-                <element signature="e#65334#65525#0" />
-                <element signature="e#74280#75261#0" />
-                <element signature="e#75732#76341#0" />
+                <element signature="e#69434#69467#0" />
                 <element signature="e#76392#76595#0" />
                 <element signature="e#76874#77087#0" />
               </folding>
@@ -89,15 +85,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/polls/parseSubmittedData.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="36" column="59" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="59" />
+            <state relative-caret-position="1546">
+              <caret line="252" column="8" selection-start-line="252" selection-start-column="8" selection-end-line="252" selection-end-column="8" />
               <folding>
+                <element signature="e#0#9#0" expanded="true" />
                 <element signature="e#120#326#0" />
+                <element signature="e#417#752#0" />
                 <element signature="e#54#847#0" />
-                <marker date="1539058873550" expanded="false" signature="811:812" ph="..." />
+                <element signature="e#1677#6905#0" />
+                <marker date="1539059958073" expanded="false" signature="851:852" ph="..." />
               </folding>
             </state>
           </provider>
@@ -207,10 +206,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>generate_all_strategies_combinations</find>
-      <find>strategies_vector_single</find>
-      <find>percell</find>
-      <find>[^</find>
       <find>'([^&lt;&gt;=]=)[^&lt;&gt;=]'</find>
       <find>equal</find>
       <find>countcells pa</find>
@@ -236,15 +231,19 @@
       <find>not_strictly_decreasing</find>
       <find>parse_</find>
       <find>dimensions_rows_conds_dict</find>
+      <find>generate_all_strategies_combinations</find>
+      <find>generate_all_strategies_product</find>
+      <find>convert_to_excel_conds</find>
       <find>form.cleaned_data</find>
+      <find>strategies_filter</find>
     </findStrings>
     <replaceStrings>
       <replace>Multi-Dimensional Equilibrium Calculator - Result</replace>
       <replace># print</replace>
       <replace>htmlResultFile</replace>
       <replace>parseConditions.encode_conditions</replace>
-      <replace>parseConditions.decode_conditions</replace>
       <replace>submitted_data</replace>
+      <replace>parseConditions.decode_conditions</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -665,22 +664,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/polls/parseSubmittedData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="36" column="59" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="59" />
-          <folding>
-            <element signature="e#120#326#0" />
-            <element signature="e#54#847#0" />
-            <marker date="1539058873550" expanded="false" signature="811:812" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/polls/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9">
-          <caret line="853" column="32" selection-start-line="853" selection-end-line="854" />
+        <state relative-caret-position="130">
+          <caret line="817" selection-start-line="817" selection-end-line="825" selection-end-column="15" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
             <element signature="e#842#854#0" />
@@ -691,17 +678,27 @@
             <element signature="e#31949#37323#0" />
             <element signature="e#37368#38942#0" />
             <element signature="e#39180#40173#0" />
-            <element signature="e#40291#47097#0" />
             <element signature="e#47261#48830#0" />
             <element signature="e#48862#48953#0" />
             <element signature="e#48986#63503#0" />
-            <element signature="e#64719#64943#0" />
-            <element signature="e#65001#65266#0" />
-            <element signature="e#65334#65525#0" />
-            <element signature="e#74280#75261#0" />
-            <element signature="e#75732#76341#0" />
+            <element signature="e#69434#69467#0" />
             <element signature="e#76392#76595#0" />
             <element signature="e#76874#77087#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/polls/parseSubmittedData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1546">
+          <caret line="252" column="8" selection-start-line="252" selection-start-column="8" selection-end-line="252" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#120#326#0" />
+            <element signature="e#417#752#0" />
+            <element signature="e#54#847#0" />
+            <element signature="e#1677#6905#0" />
+            <marker date="1539059958073" expanded="false" signature="851:852" ph="..." />
           </folding>
         </state>
       </provider>
