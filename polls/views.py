@@ -25,6 +25,7 @@ import htmlResultFile
 import parseConditions
 import parseSubmittedData
 import generateResultPageHtml
+import dimensionsClassifier
 
 
 htmlHeaderTextWithDate = htmlResultFile.HTML_HEADER_TEXT.replace("#date#", time.strftime("%H:%M %d/%m/%y"))
@@ -432,15 +433,20 @@ def calc_Global_eq(dimensions_matrix):
 def full_calc(strategies_vector, dimensions_rows_conds, dimensions_columns_conds, dimensions_rows_categories_names,
               dimensions_columns_categories_names, dimensions_ordered_row, dimensions_ordered_col, payment_conds):
 
+    # Parsing conditions
     dimensions_rows_conds = parseConditions.parse_conditions(dimensions_rows_conds)
     dimensions_columns_conds = parseConditions.parse_conditions(dimensions_columns_conds,True)
     logging.debug("full_calc - after parsing: dimensions_columns_conds = " + str(dimensions_columns_conds))
     payment_conds = parseConditions.parse_conditions(payment_conds)
+
+    # Classifying to dimensions
     dimensions_matrix = create_dimensions_matrix(dimensions_rows_categories_names,
                                                  dimensions_columns_categories_names)
     dimensions_matrix = classify_strategies_to_dimensions(strategies_vector, dimensions_matrix,
                                                           dimensions_rows_conds,
                                                           dimensions_columns_conds)
+
+    # Calculating equilibria
     dimensions_matrix = calc_payments(dimensions_matrix, payment_conds)
     dimensions_matrix = calc_MD_eq(dimensions_matrix, dimensions_ordered_row, dimensions_ordered_col)
     dimensions_matrix = calc_Global_eq(dimensions_matrix)
@@ -820,7 +826,7 @@ def index(request):
             except:
                 return HttpResponse("An error occurred while calculating the equilibrium. Please contact us.")
             try:
-                result_html_page = create_result_html_table(dimensions_matrix, dimensions_rows_categories_names, dimensions_columns_categories_names)
+                result_html_page = generateResultPageHtml.create_result_html_table(dimensions_matrix, dimensions_rows_categories_names, dimensions_columns_categories_names)
             except:
                 return HttpResponse("An error occurred while generating the resultpage. Please contact us.")
             return HttpResponse(result_html_page)
