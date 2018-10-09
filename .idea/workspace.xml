@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fa5e87c-5aed-4114-9d31-1e555d91247e" name="Default" comment="removing &quot;after \n parsing&quot; in lines 151,152 in polls/views.py">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/polls/demo_import_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/polls/htmlIndexFile.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Calc_exp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Calc_exp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/demo_import_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/demo_import_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/polls/htmlIndexFile.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/htmlResultFile.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,14 +32,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="22" />
+          <entry key="dummy" value="28" />
           <entry key="py" value="584" />
           <entry key="txt" value="64" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="86" />
+          <entry key="PLAIN_TEXT" value="92" />
           <entry key="Python" value="584" />
         </counts>
       </usages-collector>
@@ -64,11 +60,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/polls/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5219">
-              <caret line="535" column="22" selection-start-line="535" selection-start-column="22" selection-end-line="535" selection-end-column="22" />
+            <state relative-caret-position="112">
+              <caret line="536" column="33" selection-start-line="536" selection-start-column="19" selection-end-line="536" selection-end-column="33" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
                 <element signature="e#242#310#0" />
@@ -97,17 +93,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/polls/demo_import_test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
-              <caret line="1" column="41" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
+              <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/polls/htmlIndexFile.py">
+        <entry file="file://$PROJECT_DIR$/polls/htmlResultFile.py">
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <caret column="16" selection-end-column="16" />
@@ -147,7 +143,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&quot;s&quot;</find>
       <find>encode_conditions</find>
       <find>exclude_self_index_from_cond</find>
       <find>generate_quantifier_vector</find>
@@ -177,10 +172,12 @@
       <find>HTML_HEADER_TEXT</find>
       <find>htmlHeaderTextWithDate</find>
       <find>HTML_END_TEXT</find>
+      <find>htmlIndexFile</find>
     </findStrings>
     <replaceStrings>
       <replace>Multi-Dimensional Equilibrium Calculator - Result</replace>
       <replace># print</replace>
+      <replace>htmlResultFile</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -204,8 +201,8 @@
         <option value="$PROJECT_DIR$/polls/test2.py" />
         <option value="$USER_HOME$/Downloads/DA_203036256 (1).py" />
         <option value="$PROJECT_DIR$/polls/htmlIndexFile.py" />
-        <option value="$PROJECT_DIR$/polls/demo_import_test.py" />
         <option value="$PROJECT_DIR$/polls/views.py" />
+        <option value="$PROJECT_DIR$/polls/demo_import_test.py" />
       </list>
     </option>
   </component>
@@ -405,12 +402,12 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24960254" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24960254" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22202487" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.22202487" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39980546" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -529,24 +526,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/polls/htmlIndexFile.py">
+    <entry file="file://$PROJECT_DIR$/polls/htmlResultFile.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="16" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/polls/demo_import_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="41" selection-start-line="1" selection-start-column="41" selection-end-line="1" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/polls/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5219">
-          <caret line="535" column="22" selection-start-line="535" selection-start-column="22" selection-end-line="535" selection-end-column="22" />
+        <state relative-caret-position="112">
+          <caret line="536" column="33" selection-start-line="536" selection-start-column="19" selection-end-line="536" selection-end-column="33" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
             <element signature="e#242#310#0" />
@@ -571,6 +561,13 @@
             <element signature="e#76392#76595#0" />
             <element signature="e#76874#77087#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/polls/demo_import_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
         </state>
       </provider>
     </entry>
