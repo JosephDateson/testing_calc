@@ -23,6 +23,7 @@ import html5lib
 # import networkx as nx
 import htmlResultFile
 import parseConditions
+import parseSubmittedDate
 
 
 
@@ -222,21 +223,23 @@ def not_strictly_decreasing(L):
 #         return home_made_func
 #
 # }
-
-# def parse_conditions(conds,debug=False):
-#     conds = parseConditions.encode_conditions(conds)
-#     if debug:
-#         logging.debug("parse_conditions - after encoding: dimensions_columns_conds = " + str(conds))
-#     python_inputs = []
-#     for i in conds:
-#         e = shunting_yard(i);
-#         G, root = build_ast(e)
-#         python_inputs += [root.emit(G, context=None)]
-#     if debug:
-#         return parseConditions.decode_conditions(python_inputs,True)
-#     else:
-#         return parseConditions.decode_conditions(python_inputs)
-
+#
+# deprecated
+# {
+#     def parse_conditions(conds,debug=False):
+#         conds = parseConditions.encode_conditions(conds)
+#         if debug:
+#             logging.debug("parse_conditions - after encoding: dimensions_columns_conds = " + str(conds))
+#         python_inputs = []
+#         for i in conds:
+#             e = shunting_yard(i);
+#             G, root = build_ast(e)
+#             python_inputs += [root.emit(G, context=None)]
+#         if debug:
+#             return parseConditions.decode_conditions(python_inputs,True)
+#         else:
+#             return parseConditions.decode_conditions(python_inputs)
+# }
 def classify_strategies_to_dimensions(strategies, dimensions_matrix, dimensions_rows_conds,
                                       dimensions_columns_conds):
     row = ""
@@ -441,7 +444,6 @@ def full_calc(strategies_vector, dimensions_rows_conds, dimensions_columns_conds
     dimensions_matrix = calc_MD_eq(dimensions_matrix, dimensions_ordered_row, dimensions_ordered_col)
     dimensions_matrix = calc_Global_eq(dimensions_matrix)
     return dimensions_matrix
-
 
 def create_html_table(dimensions_matrix,dimensions_rows_categories_names,dimensions_columns_categories_names):
     def create_cell(strategy):
@@ -872,15 +874,16 @@ def index(request):
                 return old_str_list
 
             # Process variables definitions from the form
-            for datum in form.cleaned_data:
-                if ("var_name" in datum):
-                    if str(form.cleaned_data[datum]) != '':
-                        variables_names[datum.split("_")[2]] = str(form.cleaned_data[datum])
-                if ("var_val" in datum):
-                    if str(form.cleaned_data[datum]) != '':
-                        variables_values[datum.split("_")[2]] = str(form.cleaned_data[datum])
-            for index in variables_names:
-                variables_definitions[variables_names[index]] = variables_values[index]
+            variables_names, variables_definitions, variables_values = parseSubmittedDate.parse_variables_definition(form.cleaned_data)
+            # for datum in form.cleaned_data:
+            #     if ("var_name" in datum):
+            #         if str(form.cleaned_data[datum]) != '':
+            #             variables_names[datum.split("_")[2]] = str(form.cleaned_data[datum])
+            #     if ("var_val" in datum):
+            #         if str(form.cleaned_data[datum]) != '':
+            #             variables_values[datum.split("_")[2]] = str(form.cleaned_data[datum])
+            # for index in variables_names:
+            #     variables_definitions[variables_names[index]] = variables_values[index]
             # **********************************************************************************************************
 
             # **********************************************************************************************************
