@@ -223,19 +223,19 @@ def not_strictly_decreasing(L):
 #
 # }
 
-def parse_conditions(conds,debug=False):
-    conds = parseConditions.encode_conditions(conds)
-    if debug:
-        logging.debug("parse_conditions - after encoding: dimensions_columns_conds = " + str(conds))
-    python_inputs = []
-    for i in conds:
-        e = shunting_yard(i);
-        G, root = build_ast(e)
-        python_inputs += [root.emit(G, context=None)]
-    if debug:
-        return parseConditions.decode_conditions(python_inputs,True)
-    else:
-        return parseConditions.decode_conditions(python_inputs)
+# def parse_conditions(conds,debug=False):
+#     conds = parseConditions.encode_conditions(conds)
+#     if debug:
+#         logging.debug("parse_conditions - after encoding: dimensions_columns_conds = " + str(conds))
+#     python_inputs = []
+#     for i in conds:
+#         e = shunting_yard(i);
+#         G, root = build_ast(e)
+#         python_inputs += [root.emit(G, context=None)]
+#     if debug:
+#         return parseConditions.decode_conditions(python_inputs,True)
+#     else:
+#         return parseConditions.decode_conditions(python_inputs)
 
 def classify_strategies_to_dimensions(strategies, dimensions_matrix, dimensions_rows_conds,
                                       dimensions_columns_conds):
@@ -428,10 +428,10 @@ def calc_Global_eq(dimensions_matrix):
 def full_calc(strategies_vector, dimensions_rows_conds, dimensions_columns_conds, dimensions_rows_categories_names,
               dimensions_columns_categories_names, dimensions_ordered_row, dimensions_ordered_col, payment_conds):
 
-    dimensions_rows_conds = parse_conditions(dimensions_rows_conds)
-    dimensions_columns_conds = parse_conditions(dimensions_columns_conds,True)
+    dimensions_rows_conds = parseConditions.parse_conditions(dimensions_rows_conds)
+    dimensions_columns_conds = parseConditions.parse_conditions(dimensions_columns_conds,True)
     logging.debug("full_calc - after parsing: dimensions_columns_conds = " + str(dimensions_columns_conds))
-    payment_conds = parse_conditions(payment_conds)
+    payment_conds = parseConditions.parse_conditions(payment_conds)
     dimensions_matrix = create_dimensions_matrix(dimensions_rows_categories_names,
                                                  dimensions_columns_categories_names)
     dimensions_matrix = classify_strategies_to_dimensions(strategies_vector, dimensions_matrix,
@@ -829,7 +829,7 @@ def filter_strategies_by_constraints(strategies, constraints):
             filtered_strategies+=[strategy]
     return filtered_strategies
 def strategies_filter(strategies,constraints):
-    constraints = parse_conditions(constraints)
+    constraints = parseConditions.parse_conditions(constraints)
     filtered_strategies = filter_strategies_by_constraints(strategies, constraints)
     return filtered_strategies
 @csrf_exempt

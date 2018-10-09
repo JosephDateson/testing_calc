@@ -1,5 +1,6 @@
 import re
 import logging
+from src.pycel.excelcompiler import *
 
 def encode_conditions(conditions):
     '''
@@ -47,7 +48,7 @@ def encode_conditions(conditions):
 
 def exclude_self_index_from_cond(home_made_func):
     '''
-    :param home_made_func:
+    :param home_made_func: A func of the form foreach(i,si<=s1)
     :return: Prevent the case of s[i]>s[1] being checked for s[1]. i.e. s[1]>s[1]
     '''
     indices = re.findall(r'\[\w+\]', home_made_func, re.M | re.I)
@@ -180,3 +181,17 @@ def decode_conditions(conditions,debug=False):
                                                r'sum(' + exists_with_indices_vec[j] + ')',
                                                conditions[i])
     return conditions
+
+def parse_conditions(conds,debug=False):
+    conds = encode_conditions(conds)
+    if debug:
+        logging.debug("parse_conditions - after encoding: dimensions_columns_conds = " + str(conds))
+    python_inputs = []
+    for i in conds:
+        e = shunting_yard(i);
+        G, root = build_ast(e)
+        python_inputs += [root.emit(G, context=None)]
+    if debug:
+        return decode_conditions(python_inputs,True)
+    else:
+        return decode_conditions(python_inputs)
