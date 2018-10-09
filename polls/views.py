@@ -811,9 +811,12 @@ def index(request):
             # **********************************************************************************************************
 
             # Run the Calc
-            dimensions_matrix=full_calc(strategies_vectors, dimensions_rows_conds, dimensions_columns_conds,
-                                        dimensions_rows_categories_names, dimensions_columns_categories_names,
-                                        dimensions_rows_categories_names, dimensions_columns_categories_names, payment_conds)
+            try:
+                dimensions_matrix=full_calc(strategies_vectors, dimensions_rows_conds, dimensions_columns_conds,
+                                            dimensions_rows_categories_names, dimensions_columns_categories_names,
+                                            dimensions_rows_categories_names, dimensions_columns_categories_names, payment_conds)
+            except:
+                return HttpResponse("An error occurred while calculating the equilibrium. Please contact us.")
             return HttpResponse(create_html_table(dimensions_matrix,dimensions_rows_categories_names,dimensions_columns_categories_names))
         else:
             return HttpResponse("Bug")
