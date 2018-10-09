@@ -1,6 +1,9 @@
 import re
 import itertools
 import parseConditions
+from src.pycel.excelcompiler import *
+import pandas as pd
+
 
 # functions for variable definition
 def replace_variables_definitions(value_with_variable ,variables_definitions):
