@@ -26,6 +26,7 @@ import parseConditions
 import parseSubmittedData
 import generateResultPageHtml
 import dimensionsClassifier
+import equilibriaCalculator
 
 
 htmlHeaderTextWithDate = htmlResultFile.HTML_HEADER_TEXT.replace("#date#", time.strftime("%H:%M %d/%m/%y"))
@@ -826,7 +827,7 @@ def index(request):
             except:
                 return HttpResponse("An error occurred while calculating the equilibrium. Please contact us.")
             try:
-                result_html_page = generateResultPageHtml.create_result_html_table(dimensions_matrix, dimensions_rows_categories_names, dimensions_columns_categories_names)
+                result_html_page = create_result_html_table(dimensions_matrix, dimensions_rows_categories_names, dimensions_columns_categories_names)
             except:
                 return HttpResponse("An error occurred while generating the resultpage. Please contact us.")
             return HttpResponse(result_html_page)
