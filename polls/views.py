@@ -23,7 +23,7 @@ import html5lib
 # import networkx as nx
 import htmlResultFile
 import parseConditions
-import parseSubmittedDate
+import parseSubmittedData
 
 
 
@@ -874,7 +874,7 @@ def index(request):
                 return old_str_list
 
             # Process variables definitions from the form
-            variables_names, variables_definitions, variables_values = parseSubmittedDate.parse_variables_definition(form.cleaned_data)
+            variables_names, variables_definitions, variables_values = parseSubmittedData.parse_variables_definition(form.cleaned_data)
             # for datum in form.cleaned_data:
             #     if ("var_name" in datum):
             #         if str(form.cleaned_data[datum]) != '':
