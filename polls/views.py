@@ -455,6 +455,7 @@ def create_html_table(dimensions_matrix,dimensions_rows_categories_names,dimensi
                 else:
                     strategies = ""
                     best_response_name=""
+                    best_response_printable_name=""
                 table_content += "<td class='formatted_square_hide'>Best Response:" + str(best_response_printable_name) + "<br> Score=" + str(strategies) + "</td>"
             table_content += "</tr>"
         return table_content
