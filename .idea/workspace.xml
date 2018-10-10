@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fa5e87c-5aed-4114-9d31-1e555d91247e" name="Default" comment="removing &quot;after \n parsing&quot; in lines 151,152 in polls/views.py">
-      <change beforePath="$PROJECT_DIR$/polls/generateResultPageHtml.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/generateResultPageHtml.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,24 +31,24 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="28" />
-          <entry key="py" value="2094" />
+          <entry key="py" value="2097" />
           <entry key="txt" value="64" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="92" />
-          <entry key="Python" value="2094" />
+          <entry key="Python" value="2097" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="14" />
+          <entry key="py" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="14" />
+          <entry key="Python" value="16" />
         </counts>
       </usages-collector>
     </session>
@@ -62,8 +61,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/polls/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="832" column="18" selection-start-line="832" selection-start-column="18" selection-end-line="832" selection-end-column="18" />
+            <state relative-caret-position="239">
+              <caret line="443" column="44" selection-start-line="443" selection-start-column="24" selection-end-line="443" selection-end-column="44" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
                 <element signature="e#842#854#0" />
@@ -79,15 +78,24 @@
                 <element signature="e#27208#31860#0" />
                 <element signature="e#31949#37323#0" />
                 <element signature="e#37368#38942#0" />
-                <element signature="e#39180#40173#0" />
                 <element signature="e#40291#47097#0" />
                 <element signature="e#47261#48830#0" />
                 <element signature="e#48862#48953#0" />
                 <element signature="e#48986#63503#0" />
+                <element signature="e#65773#79531#0" />
                 <element signature="e#79570#79637#0" />
                 <element signature="e#79678#79784#0" />
                 <element signature="e#79822#79888#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/polls/dimensionsClassifier.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -99,114 +107,6 @@
               <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/polls/parseSubmittedData.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="152" selection-start-line="152" selection-end-line="152" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-                <element signature="e#120#326#0" />
-                <element signature="e#417#752#0" />
-                <element signature="e#54#847#0" />
-                <element signature="e#1677#6905#0" />
-                <element signature="e#6965#7183#0" />
-                <element signature="e#7256#7470#0" />
-                <element signature="e#7517#7741#0" />
-                <element signature="e#7822#8087#0" />
-                <element signature="e#7832#8023#0" />
-                <element signature="e#7794#7968#0" />
-                <element signature="e#8665#13098#0" />
-                <marker date="1539060897433" expanded="false" signature="910:911" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/polls/parseConditions.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-                <element signature="e#65#2183#0" />
-                <element signature="e#65#231#1" />
-                <element signature="e#277#2161#0" />
-                <element signature="e#2239#3010#0" />
-                <element signature="e#2239#2396#1" />
-                <element signature="e#2609#2719#0" />
-                <element signature="e#2760#2984#0" />
-                <element signature="e#3075#5012#0" />
-                <element signature="e#3075#3255#1" />
-                <element signature="e#3442#3552#0" />
-                <element signature="e#3707#3775#0" />
-                <element signature="e#4028#4167#0" />
-                <element signature="e#4202#4350#0" />
-                <element signature="e#4705#4898#0" />
-                <element signature="e#5065#10088#0" />
-                <element signature="e#5195#10066#0" />
-                <element signature="e#5442#10066#0" />
-                <element signature="e#5806#10066#0" />
-                <element signature="e#6089#6270#0" />
-                <element signature="e#6652#8573#0" />
-                <element signature="e#6686#6866#0" />
-                <element signature="e#6888#6971#0" />
-                <element signature="e#7758#8130#0" />
-                <element signature="e#7910#8130#0" />
-                <element signature="e#8635#8809#0" />
-                <element signature="e#8905#9118#0" />
-                <element signature="e#9161#10066#0" />
-                <element signature="e#9453#9711#0" />
-                <element signature="e#9788#10066#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/polls/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/polls/demo_import_test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
-              <folding>
-                <marker date="1539057308461" expanded="true" signature="876:877" ph="..." />
-                <marker date="1539057308461" expanded="true" signature="876:881" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/polls/htmlResultFile.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="16" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/test_demo.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" selection-start-line="8" selection-end-line="9" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -247,11 +147,11 @@
       <find>generate_all_strategies_product</find>
       <find>generate_all_strategies_combinations</find>
       <find>convert_nested_ifs_to_strings</find>
-      <find>xsum</find>
       <find>create_html_table</find>
       <find>create_result_html_table</find>
       <find>create_cell</find>
       <find>generate_script_for_strategy</find>
+      <find>xsum</find>
       <find>TABLES</find>
     </findStrings>
     <replaceStrings>
@@ -259,8 +159,8 @@
       <replace># print</replace>
       <replace>htmlResultFile</replace>
       <replace>parseConditions.encode_conditions</replace>
-      <replace>parseConditions.decode_conditions</replace>
       <replace>submitted_data</replace>
+      <replace>parseConditions.decode_conditions</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -491,7 +391,7 @@
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.24960254" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24960254" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -684,9 +584,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/polls/equilibriaCalculator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2227">
+          <caret line="170" lean-forward="true" selection-start-line="170" selection-end-line="170" />
+          <folding>
+            <element signature="e#1954#2004#0" />
+            <element signature="e#6762#6782#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/polls/generateResultPageHtml.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/polls/parseSubmittedData.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
+        <state relative-caret-position="249">
           <caret line="152" selection-start-line="152" selection-end-line="152" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
@@ -706,16 +627,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/polls/equilibriaCalculator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2227">
-          <caret line="170" lean-forward="true" selection-start-line="170" selection-end-line="170" />
-          <folding>
-            <element signature="e#1954#2004#0" />
-            <element signature="e#6762#6782#0" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$USER_HOME$/Downloads/skeleton1.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/polls/dimensionsClassifier.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -724,20 +637,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/polls/generateResultPageHtml.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/polls/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="832" column="18" selection-start-line="832" selection-start-column="18" selection-end-line="832" selection-end-column="18" />
+        <state relative-caret-position="239">
+          <caret line="443" column="44" selection-start-line="443" selection-start-column="24" selection-end-line="443" selection-end-column="44" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
             <element signature="e#842#854#0" />
@@ -753,11 +656,11 @@
             <element signature="e#27208#31860#0" />
             <element signature="e#31949#37323#0" />
             <element signature="e#37368#38942#0" />
-            <element signature="e#39180#40173#0" />
             <element signature="e#40291#47097#0" />
             <element signature="e#47261#48830#0" />
             <element signature="e#48862#48953#0" />
             <element signature="e#48986#63503#0" />
+            <element signature="e#65773#79531#0" />
             <element signature="e#79570#79637#0" />
             <element signature="e#79678#79784#0" />
             <element signature="e#79822#79888#0" />

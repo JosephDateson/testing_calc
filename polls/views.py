@@ -441,9 +441,9 @@ def full_calc(strategies_vector, dimensions_rows_conds, dimensions_columns_conds
     payment_conds = parseConditions.parse_conditions(payment_conds)
 
     # Classifying to dimensions
-    dimensions_matrix = create_dimensions_matrix(dimensions_rows_categories_names,
+    dimensions_matrix = dimensionsClassifier.create_dimensions_matrix(dimensions_rows_categories_names,
                                                  dimensions_columns_categories_names)
-    dimensions_matrix = classify_strategies_to_dimensions(strategies_vector, dimensions_matrix,
+    dimensions_matrix = dimensionsClassifier.classify_strategies_to_dimensions(strategies_vector, dimensions_matrix,
                                                           dimensions_rows_conds,
                                                           dimensions_columns_conds)
 
