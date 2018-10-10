@@ -830,8 +830,8 @@ def index(request):
             try:
                 result_html_page = \
                     generateResultPageHtml.create_result_html_table(dimensions_matrix, dimensions_rows_categories_names, dimensions_columns_categories_names)
-            except:
-                return HttpResponse("An error occurred while generating the resultpage. Please contact us.")
+            except Exception as e:
+                return HttpResponse("An error occurred while generating the result page: {0}. Please contact us.".format(e) )
 
             return HttpResponse(result_html_page)
         else:
