@@ -797,7 +797,8 @@ def index(request):
         form = NameForm(request.POST)
         if form.is_valid():
             try:
-                variables_names, variables_definitions, variables_values = parseSubmittedData.parse_variables_definition(form.cleaned_data)
+                variables_names, variables_definitions, variables_values = \
+                    parseSubmittedData.parse_variables_definition(form.cleaned_data)
             except:
                 return HttpResponse("Variables were not inserted properly. Please type them once again.")
 
@@ -815,8 +816,6 @@ def index(request):
                     parseSubmittedData.parse_generator(form.cleaned_data, variables_definitions, strategies_constraints)
             except:
                 return HttpResponse("Generator data were not inserted properly. Please type them once again.")
-
-
             # **********************************************************************************************************
 
             # Run the Calc
@@ -826,10 +825,14 @@ def index(request):
                                             dimensions_rows_categories_names, dimensions_columns_categories_names, payment_conds)
             except:
                 return HttpResponse("An error occurred while calculating the equilibrium. Please contact us.")
+
+            # Generate the result page
             try:
-                result_html_page = create_result_html_table(dimensions_matrix, dimensions_rows_categories_names, dimensions_columns_categories_names)
+                result_html_page = \
+                    generateResultPageHtml.create_result_html_table(dimensions_matrix, dimensions_rows_categories_names, dimensions_columns_categories_names)
             except:
                 return HttpResponse("An error occurred while generating the resultpage. Please contact us.")
+
             return HttpResponse(result_html_page)
         else:
             return HttpResponse("Bug")
