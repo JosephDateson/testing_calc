@@ -823,8 +823,8 @@ def index(request):
                 dimensions_matrix=full_calc(strategies_vectors, dimensions_rows_conds, dimensions_columns_conds,
                                             dimensions_rows_categories_names, dimensions_columns_categories_names,
                                             dimensions_rows_categories_names, dimensions_columns_categories_names, payment_conds)
-            except:
-                return HttpResponse("An error occurred while calculating the equilibrium. Please contact us.")
+            except Exception as err:
+                return HttpResponse("An error occurred while calculating the equilibrium: {0}. Please contact us.".format(err))
 
             # Generate the result page
             try:
