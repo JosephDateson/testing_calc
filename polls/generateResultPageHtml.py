@@ -2,7 +2,7 @@ import pandas as pd
 import htmlResultFile
 import time
 htmlHeaderTextWithDate = htmlResultFile.HTML_HEADER_TEXT.replace("#date#", time.strftime("%H:%M %d/%m/%y"))
-
+TABLES = []
 def create_cell(strategy, row, col, dimensions_matrix):
     strategy_cont = strategy
     if len(strategy) == 1:

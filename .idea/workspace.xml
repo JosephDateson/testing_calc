@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fa5e87c-5aed-4114-9d31-1e555d91247e" name="Default" comment="removing &quot;after \n parsing&quot; in lines 151,152 in polls/views.py">
+      <change beforePath="$PROJECT_DIR$/polls/generateResultPageHtml.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/generateResultPageHtml.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,14 +32,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="28" />
-          <entry key="py" value="2092" />
+          <entry key="py" value="2094" />
           <entry key="txt" value="64" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="92" />
-          <entry key="Python" value="2092" />
+          <entry key="Python" value="2094" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -61,8 +62,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/polls/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="833" column="92" selection-start-line="833" selection-start-column="92" selection-end-line="833" selection-end-column="92" />
+            <state relative-caret-position="201">
+              <caret line="832" column="18" selection-start-line="832" selection-start-column="18" selection-end-line="832" selection-end-column="18" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
                 <element signature="e#842#854#0" />
@@ -94,13 +95,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/polls/generateResultPageHtml.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="118" column="29" selection-start-line="118" selection-start-column="29" selection-end-line="118" selection-end-column="29" />
+            <state relative-caret-position="68">
+              <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
-                <element signature="e#128#6715#0" />
-                <element signature="e#7207#8776#0" />
-                <element signature="e#8808#8899#0" />
               </folding>
             </state>
           </provider>
@@ -225,7 +223,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>full_calc</find>
       <find>after parsing</find>
       <find>strategy_for_link</find>
       <find>HTML_HEADER_TEXT</find>
@@ -253,8 +250,9 @@
       <find>xsum</find>
       <find>create_html_table</find>
       <find>create_result_html_table</find>
-      <find>generate_script_for_strategy</find>
       <find>create_cell</find>
+      <find>generate_script_for_strategy</find>
+      <find>TABLES</find>
     </findStrings>
     <replaceStrings>
       <replace>Multi-Dimensional Equilibrium Calculator - Result</replace>
@@ -290,9 +288,9 @@
         <option value="$PROJECT_DIR$/polls/demo_import_test.py" />
         <option value="$PROJECT_DIR$/polls/parseConditions.py" />
         <option value="$PROJECT_DIR$/polls/parseSubmittedData.py" />
-        <option value="$PROJECT_DIR$/polls/generateResultPageHtml.py" />
         <option value="$PROJECT_DIR$/polls/dimensionsClassifier.py" />
         <option value="$PROJECT_DIR$/polls/equilibriaCalculator.py" />
+        <option value="$PROJECT_DIR$/polls/generateResultPageHtml.py" />
         <option value="$PROJECT_DIR$/polls/views.py" />
       </list>
     </option>
@@ -728,21 +726,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/polls/generateResultPageHtml.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="118" column="29" selection-start-line="118" selection-start-column="29" selection-end-line="118" selection-end-column="29" />
+        <state relative-caret-position="68">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#128#6715#0" />
-            <element signature="e#7207#8776#0" />
-            <element signature="e#8808#8899#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/polls/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="833" column="92" selection-start-line="833" selection-start-column="92" selection-end-line="833" selection-end-column="92" />
+        <state relative-caret-position="201">
+          <caret line="832" column="18" selection-start-line="832" selection-start-column="18" selection-end-line="832" selection-end-column="18" />
           <folding>
             <element signature="e#0#36#0" expanded="true" />
             <element signature="e#842#854#0" />
