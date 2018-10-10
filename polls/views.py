@@ -448,9 +448,9 @@ def full_calc(strategies_vector, dimensions_rows_conds, dimensions_columns_conds
                                                           dimensions_columns_conds)
 
     # Calculating equilibria
-    dimensions_matrix = calc_payments(dimensions_matrix, payment_conds)
-    dimensions_matrix = calc_MD_eq(dimensions_matrix, dimensions_ordered_row, dimensions_ordered_col)
-    dimensions_matrix = calc_Global_eq(dimensions_matrix)
+    dimensions_matrix = equilibriaCalculator.calc_payments(dimensions_matrix, payment_conds)
+    dimensions_matrix = equilibriaCalculator.calc_MD_eq(dimensions_matrix, dimensions_ordered_row, dimensions_ordered_col)
+    dimensions_matrix = equilibriaCalculator.calc_Global_eq(dimensions_matrix)
     return dimensions_matrix
 
 def create_result_html_table(dimensions_matrix, dimensions_rows_categories_names, dimensions_columns_categories_names):
