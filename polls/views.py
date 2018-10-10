@@ -31,10 +31,9 @@ def full_calc(strategies_vector, dimensions_rows_conds, dimensions_columns_conds
               dimensions_columns_categories_names, dimensions_ordered_row, dimensions_ordered_col, payment_conds):
 
     # Parsing conditions
-    dimensions_rows_conds = parseConditions.parse_conditions(dimensions_rows_conds)
+    dimensions_rows_conds    = parseConditions.parse_conditions(dimensions_rows_conds)
     dimensions_columns_conds = parseConditions.parse_conditions(dimensions_columns_conds,True)
-    logging.debug("full_calc - after parsing: dimensions_columns_conds = " + str(dimensions_columns_conds))
-    payment_conds = parseConditions.parse_conditions(payment_conds)
+    payment_conds            = parseConditions.parse_conditions(payment_conds)
 
     # Classifying to dimensions
     dimensions_matrix = dimensionsClassifier.create_dimensions_matrix(dimensions_rows_categories_names,
@@ -269,24 +268,19 @@ def index(request):
             except:
                 return HttpResponse("Dimensions data were not inserted properly. Please type them once again.")
 
-            logging.debug("Preprocessing: dimensions_columns_conds = " + str(dimensions_columns_conds))
-
             try:
                 strategies_vectors, dimensions_rows_categories_names, dimensions_columns_categories_names = \
                     parseSubmittedData.parse_generator(form.cleaned_data, variables_definitions, strategies_constraints)
             except:
                 return HttpResponse("Generator data were not inserted properly. Please type them once again.")
-            # **********************************************************************************************************
 
-            # Run the Calc
             try:
                 dimensions_matrix=full_calc(strategies_vectors, dimensions_rows_conds, dimensions_columns_conds,
                                             dimensions_rows_categories_names, dimensions_columns_categories_names,
                                             dimensions_rows_categories_names, dimensions_columns_categories_names, payment_conds)
-            except Exception as err:
-                return HttpResponse("An error occurred while calculating the equilibrium: {0}. Please contact us.".format(err))
+            except:
+                return HttpResponse("An error occurred while calculating the equilibrium. Please contact us.")
 
-            # Generate the result page
             try:
                 result_html_page = \
                     generateResultPageHtml.create_result_html_table(dimensions_matrix, dimensions_rows_categories_names, dimensions_columns_categories_names)
@@ -295,7 +289,7 @@ def index(request):
 
             return HttpResponse(result_html_page)
         else:
-            return HttpResponse("Bug")
+            return HttpResponse("An unexpected error in comunication took place. Please run the calculator again (i.e. click the Calculate! button once more).")
 
     # return render(request, 'name.html', {'form': form})
 def detail(request, question_id):
