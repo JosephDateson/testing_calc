@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fa5e87c-5aed-4114-9d31-1e555d91247e" name="Default" comment="removing &quot;after \n parsing&quot; in lines 151,152 in polls/views.py">
-      <change beforePath="$PROJECT_DIR$/polls/dimensionsClassifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/dimensionsClassifier.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/polls/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,14 +31,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="28" />
-          <entry key="py" value="2134" />
+          <entry key="py" value="2137" />
           <entry key="txt" value="64" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="PLAIN_TEXT" value="92" />
-          <entry key="Python" value="2134" />
+          <entry key="Python" value="2137" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -59,29 +58,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/polls/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="452" column="45" selection-start-line="452" selection-start-column="45" selection-end-line="452" selection-end-column="45" />
+            <state relative-caret-position="476">
+              <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
               <folding>
                 <element signature="e#0#36#0" expanded="true" />
-                <element signature="e#842#854#0" />
-                <element signature="e#15906#15928#0" />
-                <element signature="e#15862#15977#0" />
-                <element signature="e#16115#16126#0" />
-                <element signature="e#16167#16254#0" />
-                <element signature="e#16255#16258#0" />
-                <element signature="e#16321#16408#0" />
-                <element signature="e#16401#16404#0" />
-                <element signature="e#26524#26767#0" />
-                <element signature="e#26874#27149#0" />
-                <element signature="e#27208#31860#0" />
-                <element signature="e#31949#37323#0" />
-                <element signature="e#37368#38942#0" />
-                <element signature="e#40291#47097#0" />
-                <element signature="e#47261#48830#0" />
-                <element signature="e#48862#48953#0" />
                 <element signature="e#48986#63503#0" />
                 <element signature="e#79570#79637#0" />
                 <element signature="e#79678#79784#0" />
@@ -91,7 +74,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/polls/dimensionsClassifier.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
@@ -102,6 +85,8 @@
                 <element signature="e#125#128#0" />
                 <element signature="e#183#270#0" />
                 <element signature="e#271#274#0" />
+                <element signature="e#106#381#0" />
+                <element signature="e#544#787#0" />
               </folding>
             </state>
           </provider>
@@ -206,8 +191,8 @@
         <option value="$PROJECT_DIR$/polls/parseSubmittedData.py" />
         <option value="$PROJECT_DIR$/polls/equilibriaCalculator.py" />
         <option value="$PROJECT_DIR$/polls/generateResultPageHtml.py" />
-        <option value="$PROJECT_DIR$/polls/views.py" />
         <option value="$PROJECT_DIR$/polls/dimensionsClassifier.py" />
+        <option value="$PROJECT_DIR$/polls/views.py" />
       </list>
     </option>
   </component>
@@ -614,36 +599,6 @@
     <entry file="file://$USER_HOME$/Downloads/skeleton1.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/polls/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="452" column="45" selection-start-line="452" selection-start-column="45" selection-end-line="452" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#36#0" expanded="true" />
-            <element signature="e#842#854#0" />
-            <element signature="e#15906#15928#0" />
-            <element signature="e#15862#15977#0" />
-            <element signature="e#16115#16126#0" />
-            <element signature="e#16167#16254#0" />
-            <element signature="e#16255#16258#0" />
-            <element signature="e#16321#16408#0" />
-            <element signature="e#16401#16404#0" />
-            <element signature="e#26524#26767#0" />
-            <element signature="e#26874#27149#0" />
-            <element signature="e#27208#31860#0" />
-            <element signature="e#31949#37323#0" />
-            <element signature="e#37368#38942#0" />
-            <element signature="e#40291#47097#0" />
-            <element signature="e#47261#48830#0" />
-            <element signature="e#48862#48953#0" />
-            <element signature="e#48986#63503#0" />
-            <element signature="e#79570#79637#0" />
-            <element signature="e#79678#79784#0" />
-            <element signature="e#79822#79888#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/polls/generateResultPageHtml.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -671,6 +626,22 @@
             <element signature="e#125#128#0" />
             <element signature="e#183#270#0" />
             <element signature="e#271#274#0" />
+            <element signature="e#106#381#0" />
+            <element signature="e#544#787#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/polls/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#48986#63503#0" />
+            <element signature="e#79570#79637#0" />
+            <element signature="e#79678#79784#0" />
+            <element signature="e#79822#79888#0" />
           </folding>
         </state>
       </provider>
